@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 03 日 16:06
+-- 產生時間： 2022 年 01 月 03 日 22:54
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫: `禾酒林`
+-- 資料庫: `sake test`
 --
 
 -- --------------------------------------------------------
@@ -374,8 +374,8 @@ CREATE TABLE `payment_detail` (
 
 CREATE TABLE `product_container` (
   `container_id` int(11) NOT NULL,
-  `container_name` varchar(255) NOT NULL,
-  `container_img` varchar(255) NOT NULL
+  `container_img` varchar(255) NOT NULL,
+  `container_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -410,8 +410,8 @@ CREATE TABLE `product_format` (
 
 CREATE TABLE `product_gift` (
   `gift_id` int(11) NOT NULL,
-  `gift_name` varchar(20) NOT NULL,
-  `pro_gift` int(5) NOT NULL COMMENT '無、1入、2入、1+1'
+  `pro_gift` int(5) NOT NULL COMMENT '無、1入、2入、1+1',
+  `gift_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -435,7 +435,7 @@ CREATE TABLE `product_gift_d` (
 
 CREATE TABLE `product_sake` (
   `pro_id` int(11) NOT NULL,
-  `pro_name` varchar(20) NOT NULL COMMENT '純米大吟釀　夢殿',
+  `pro_name` varchar(50) NOT NULL COMMENT '純米大吟釀　夢殿',
   `pro_stock` int(11) NOT NULL,
   `pro_selling` int(11) NOT NULL COMMENT '篩選用，用++的方式',
   `pro_intro` varchar(700) NOT NULL,
