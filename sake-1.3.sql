@@ -34,6 +34,15 @@ CREATE TABLE `admin` (
   `user_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_pass`, `user_time`) VALUES
+(1, 'Ashley', 'Ashley', '2022-01-04 00:00:00'),
+(2, 'Wilson', 'Wilson', '2022-01-04 00:00:00'),
+(4, 'cch', 'cch', '2022-01-04 00:00:00'),
+(6, 'Mary', 'Mary', '2022-01-04 00:00:00'),
+(8, 'Winnie', 'Winnie', '2022-01-04 00:00:00'),
+(10, 'Grace', 'Grace', '2022-01-04 00:00:00'),
+(12, 'Jacky', 'Jacky', '2022-01-04 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -1300,7 +1309,7 @@ ALTER TABLE `user`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
