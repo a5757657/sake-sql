@@ -161,6 +161,43 @@ CREATE TABLE `guide_a` (
   `a_item` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `guide_a`
+--
+
+INSERT INTO `guide_a` (`a_no`, `q_id`, `a_item`) VALUES
+(1, 1, '清爽'),
+(2, 1, '豐富'),
+(3, 1, '兩者皆可'),
+(4, 2, '濃烈'),
+(5, 2, '適中'),
+(6, 2, '兩者皆可'),
+(7, 3, '甜'),
+(8, 3, '酸'),
+(9, 3, '兩者皆可'),
+(10, 4, '1000元以內'),
+(11, 4, '1000元 - 2000元'),
+(12, 4, '2000元 - 3000元'),
+(13, 4, '無上限'),
+(14, 5, '送禮'),
+(15, 5, '自飲'),
+(16, 6, '冷藏飲用'),
+(17, 6, '隔水加熱飲用'),
+(18, 6, '常溫飲用'),
+(19, 6, '無所謂'),
+(20, 7, '心情特別好'),
+(21, 7, '心情還不錯'),
+(22, 7, '心情有點差'),
+(23, 7, '心情惡劣'),
+(24, 8, '晴天'),
+(25, 8, '雨天'),
+(26, 8, '兩者都喜歡'),
+(27, 8, '沒有特別偏好'),
+(28, 9, '火象星座（牡羊、獅子、射手）'),
+(29, 9, '水象星座（巨蟹、天蠍、雙魚）'),
+(30, 9, '土象星座（金牛、處女、魔羯）'),
+(31, 9, '風象星座（雙子、天秤、水瓶）');
+
 -- --------------------------------------------------------
 
 --
@@ -185,6 +222,21 @@ CREATE TABLE `guide_q` (
   `q_seq` int(8) NOT NULL,
   `q_des` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `guide_q`
+--
+
+INSERT INTO `guide_q` (`q_id`, `q_seq`, `q_des`) VALUES
+(1, 1, '您喜歡口感清爽的清酒，還是有豐富層次口感的清酒呢？'),
+(2, 2, '您喜歡聞起來香氣濃烈的清酒，還是香氣適中的清酒？'),
+(3, 3, '您喜歡口味較甜還是帶有些許酸味的清酒？'),
+(4, 4, '預算範圍'),
+(5, 5, '您購買清酒是要送禮還是自飲呢？'),
+(6, 6, '您希望品嚐的方式為？'),
+(7, 7, '您今天的心情如何呢？'),
+(8, 8, '您喜歡晴天還是雨天？'),
+(9, 9, '請問您是什麼星座？');
 
 -- --------------------------------------------------------
 
@@ -568,8 +620,43 @@ CREATE TABLE `product_gift_d` (
   `gift_d_id` int(11) NOT NULL,
   `gift_id` int(11) NOT NULL COMMENT '1,1,2,2,3,3,',
   `gift_img` varchar(255) NOT NULL,
-  `box_color` varchar(10) NOT NULL COMMENT '黑,紅,白'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `box_color` varchar(10) NOT NULL COMMENT 'b+0000',
+  `gift_pro` varchar(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `product_gift_d`
+--
+
+INSERT INTO `product_gift_d` (`gift_d_id`, `gift_id`, `gift_img`, `box_color`, `gift_pro`) VALUES
+(1, 2, 'w0013.jpg', 'w0013', '13'),
+(2, 2, 'b0013.jpg', 'b0013', '13'),
+(3, 2, 'g0016.jpg', 'g0016', '16'),
+(4, 2, 'b0016.jpg', 'b0016', '16'),
+(5, 2, 'g0026.jpg', 'g0026', '26'),
+(6, 2, 'w0026.jpg', 'w0026', '26'),
+(7, 2, 'g0030.jpg', 'g0030', '30'),
+(8, 2, 'w0030.jpg', 'w0030', '30'),
+(9, 2, 'g0033.jpg', 'g0033', '33'),
+(10, 2, 'b0033.jpg', 'b0033', '33'),
+(11, 2, 'b0040.jpg', 'b0040', '40'),
+(12, 2, 'w0040.jpg', 'w0040', '40'),
+(17, 3, 'gold.jpg', 'gold', '8+17+18+23+24+25'),
+(18, 3, 'black.jpg', 'black', '8+17+18+23+24+25'),
+(19, 3, 'red.jpg', 'red', '8+17+18+23+24+25'),
+(20, 3, 'white.jpg', 'white', '8+17+18+23+24+25'),
+(21, 4, 'b0014.jpg', 'b0014', '14'),
+(22, 4, 'w0014.jpg', 'w0014', '14'),
+(23, 4, 'b0015.jpg', 'b0015', '15'),
+(24, 4, 'w0015.jpg', 'w0015', '15'),
+(25, 4, 'b0021.jpg', 'b0021', '21'),
+(26, 4, 'w0021.jpg', 'w0021', '21'),
+(27, 4, 'g0034.jpg', 'g0034', '34'),
+(28, 4, 'b0034.jpg', 'b0034', '34'),
+(29, 4, 'g0042.jpg', 'g0042', '42'),
+(30, 4, 'w0042.jpg', 'w0042', '42'),
+(31, 4, 'g0055.jpg', 'g0055', '55'),
+(32, 4, 'w0055.jpg', 'w0055', '55');
 
 -- --------------------------------------------------------
 
@@ -1190,7 +1277,7 @@ ALTER TABLE `favorite`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_a`
 --
 ALTER TABLE `guide_a`
-  MODIFY `a_no` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `a_no` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_clia`
@@ -1202,7 +1289,7 @@ ALTER TABLE `guide_clia`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_q`
 --
 ALTER TABLE `guide_q`
-  MODIFY `q_id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `q_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mark`
@@ -1274,7 +1361,7 @@ ALTER TABLE `product_gift`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_gift_d`
 --
 ALTER TABLE `product_gift_d`
-  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_sake`
