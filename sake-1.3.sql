@@ -239,6 +239,48 @@ CREATE TABLE `menu_pictures` (
   `res_id` int(11) NOT NULL COMMENT 'FK：restaurant.res_id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `menu_pictures`
+--
+
+INSERT INTO `menu_pictures` (`menu_pic_id`, `menu_pic_name`, `res_id`) VALUES
+(1, '1-1.png', 1),
+(2, '1-2.png', 1),
+(3, '1-3.png', 1),
+(4, '1-4.png', 1),
+(5, '2-1.png', 2),
+(6, '2-2.png', 2),
+(7, '2-3.png', 2),
+(8, '2-4.png', 2),
+(9, '2-5.png', 2),
+(10, '2-6.png', 2),
+(11, '3-1.jpg', 3),
+(12, '3-2.jpg', 3),
+(13, '4-1.png', 4),
+(14, '4-2.png', 4),
+(15, '5-1.jpg', 5),
+(16, '5-2.jpg', 5),
+(17, '5-3.jpg', 5),
+(18, '6-1.jpg', 6),
+(19, '6-2.jpg', 6),
+(20, '7-1.jpg', 7),
+(21, '7-2.jpg', 7),
+(22, '7-3.jpg', 7),
+(23, '8-1.jpg', 8),
+(24, '8-2.jpg', 8),
+(25, '9-1.jpg', 9),
+(26, '9-2.jpg', 9),
+(27, '9-3.jpg', 9),
+(28, '10-1.jpg', 10),
+(29, '10-2.jpg', 10),
+(30, '10-3.jpg', 10),
+(31, '11-1.jpg', 11),
+(32, '11-2.jpg', 11),
+(33, '11-3.jpg', 11),
+(34, '12-1.jpeg', 12),
+(35, '12-2.jpeg', 12),
+(36, '12-3.webp', 12);
+
 -- --------------------------------------------------------
 
 --
@@ -635,6 +677,25 @@ CREATE TABLE `restaurant` (
   `res_update_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `restaurant`
+--
+
+INSERT INTO `restaurant` (`res_id`, `res_type`, `res_area`, `res_name`, `res_intro`, `res_address`, `res_ser_hours`, `res_t_number`, `web_link`, `fb_link`, `ig_link`, `booking_link`, `res_create_date`, `res_update_date`) VALUES
+(1, 'Fine Dining', '北部', 'The Ukai Taipei', 'THE UKAI TAIPEI位於微風南山46樓，是台北第一家結合鐵板燒與日式割烹的「2合1複合業態高樓景觀餐廳」。來自日本的鐵板燒「Ukai-Tei」是全球第一間以鐵板燒料理摘下米其林一星的餐廳，並連續拿了7年。環境、景觀、服務、器皿及手藝，都是頂級規格的打造，在此有了不同以往的尊貴用餐感受。', '台北市信義區松智路17號46樓', '[\"12:00–15:00 18:00–22:00\", \r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\"]', '02-7730-1166', 'https://www.ukai.co.jp/ct/taipei/', 'https://www.facebook.com/theukaitaipei/', 'https://www.instagram.com/theukaitaipei/', 'https://www.ukai-tpe.com.tw/websev?ref=pages&id=16&lang=zh-tw', '2022-01-02 05:22:23', '2022-01-02 05:22:23'),
+(2, 'Fine Dining', '南部', 'THE UKAI Kaohsiung', 'Ukai-tei Kaohsiung 是高雄晶英行館引進的日本米其林星級餐飲，Ukai-tei 鐵板燒 是全世界第一間榮獲米其林一星的鐵板燒，高雄也是海外的第一家分店，採一位廚師對一組客人的專屬服務。', '高雄市前鎮區中山二路199號 晶英國際行館2F／3F', '[\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\",\r\n\"12:00–15:00 18:00–22:00\"]', '07-973-0122', 'https://www.ukai.co.jp/ct/kaohsiung/', 'https://www.facebook.com/ukaiteikaohsiung/', NULL, NULL, '2022-01-02 05:28:41', '2022-01-02 05:28:41'),
+(3, '居酒屋', '北部', '獨樂清酒食堂 Koma Sake Bistro', '有別於台灣，在日本，居酒屋就是讓日常生活中充滿壓力的人在下班後能夠紓解一天緊張的心情，私下和同事、朋友聯絡感情的地方，希望能把日本居酒屋的文化帶來台灣。台北超級隱藏版日式餐酒館【獨樂清酒食堂 Koma Sake Bistro】，\r\n\r\n以多元化日本清酒及道地居酒屋料理為主，還有熱情親切的服務吸引客人向隅，來到這兒可以盡情放鬆的享用美食及美酒，紓解日常生活的壓力。', '台北市大同區重慶北路一段1號2樓', '[\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\"]', '02-2558-0836', NULL, 'https://www.facebook.com/Koma2F/', NULL, 'https://inline.app/booking/-LhPREP3g3atpZGJVjQz%3Ainline-live-2a466/-LhPRESxDueQIB0eVDm7?step=0&fbclid=IwAR11lqm7LAn99H1JYYaunKhepHiw51UuSiiLSpNnn7vAGYtZxAOHuJ2Vx14', '2022-01-02 05:32:16', '2022-01-02 05:32:16'),
+(4, 'Sake Bar', '北部', '知心寮', '位於台北市林森北路145巷內、九條通裡頭的「知心寮」，是以燒酎、日本酒為主題的日式居酒屋，不僅講日文、英文都能通，且老闆更是領有國際唎酒師的達人，都會依照每個人的喜好來推薦、介紹，讓每位客人都能喝到適合自己的酒類；此外這裡也有販售純米大吟釀、水果酒、清酒、啤酒甚至無酒精飲品、日本汽水等，足以滿足各種族群的需求!', '台北市中山區林森北路145巷17號1樓', '[\"18:00–00:00\",\r\n\"休息\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\"]', '02-2531-5961', NULL, 'https://www.facebook.com/知心寮-107889457717193/', NULL, 'https://inline.app/booking/-MqxACFm8CDdynV0E_Vh:inline-live-2/-MqxACU3td_H0HdsUWUB?fbclid=IwAR1QuE7eph_bQyjE23sHwzEXzuupPOMZYXsyYYuHOcWyHlOyAFNlJ6Qlxjg', '2022-01-02 13:19:13', '2022-01-02 13:19:13'),
+(5, '居酒屋', '中部', '板前燒肉一徹', '台中燒肉你都吃哪家？這家藏在巷子裡的板前燒肉“一徹”你一定不能錯過，全程桌邊服務～更能享受老闆嚴選食材的頂級美味，單點或是交給老闆搭配套餐通通都可以，絕佳烤功保證會一吃上癮！', '台中市中區民族路227號', '[\"18:00–01:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–01:00\"]', '04-22275353', NULL, 'https://www.facebook.com/nikuittetsu/?ref=page_internal', 'https://www.instagram.com/yakinikuittetsu/', 'https://inline.app/booking/-Lt8IklokDZk2tyKebkv:inline-live-1/-Lt8IkpknSMuxZzupKo4', '2022-01-02 13:19:13', '2022-01-02 13:19:13'),
+(6, 'Fine Dining', '中部', '指月亭 和風料理', '員林人氣日式料理店，食材新鮮可期，刀工精湛，每道料理絕對色香味俱全，讓你彷彿置身日本居酒屋！指月亭首推職人手作辣椒醬，每每開放販售必定秒殺，來店裏絕對不能錯過！', '彰化縣員林市大同路二段102號', '[\"11:30–14:00 17:00–21:00\",\r\n\"11:30–14:00 17:00–21:00\",\r\n\"休息\",\r\n\"16:30–22:00\",\r\n\"16:30–22:00\"\r\n\"16:30–22:00\"\r\n\"16:30–22:00\"]', '04-833-8919', 'https://japanese-authentic-restaurant-57.business.site', 'https://www.facebook.com/Chigetsutei/', NULL, NULL, '2022-01-02 13:25:39', '2022-01-02 13:25:39'),
+(7, '居酒屋', '南部', '柶築晚酌の店', '左營區重清路居酒屋-居酒手作料理，刺身、握壽司、串燒、燒烤、揚物、創意料理、orion生啤、日本sake，給晚下班想小酌的您一個日式氛圍，放鬆、及填飽肚子的地方。', '高雄市左營區重清路31號', '[\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"休息\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\"]', '0930-733-808', NULL, 'https://www.facebook.com/SiZhuWanZhuonoDian/', 'https://www.instagram.com/sizhuwanzhuonodian/', NULL, '2022-01-02 13:27:25', '2022-01-02 13:27:25'),
+(8, 'Fine Dining', '北部', '祥雲龍吟', '透過與在地農家與漁家交流，深入理解台灣季節轉化與食材特色，每日運用台灣豐富及新鮮物產，結合龍吟流的料理技巧，展演出兼具傳統創新的懷石料理。祥雲龍吟發源自日本東京，是龍吟日本在台灣的分店，主廚山本征治以台灣豐富物產創造獨有特色，致力創造難忘的餐飲體驗。\r\n料理長稗田良平先生依循龍吟創辦者山本征治先生的料理精神，透過與在地農家與漁家交流，深入理解台灣季節轉化與食材特色，每日運用台灣豐富及新鮮物產，結合龍吟流的料理技巧，展演出兼具傳統創新的懷石料理。\r\n「龍吟」來是取自佛家禪語的「龍吟雲起」。', '台北市中山區樂群三路301號5樓', '[\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"休息\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\"]', '02-8501-5808', 'https://www.nihonryori-ryugin.com.tw/zh/default.aspx', 'https://www.facebook.com/ShounRyugin/', NULL, 'https://www.nihonryori-ryugin.com.tw/zh/RyBooking.aspx', '2022-01-02 13:29:08', '2022-01-02 13:29:08'),
+(9, 'Fine Dining', '北部', '月夜岩 蟹懷石', '試想，在寂靜的春夜下晚風習習、心情舒暢，此時停佇在海岸邊，望著遼闊的大海和朦朧而柔和的月光相照相映；沉靜於如此場景的同時，我們想要提供給在此用餐的重要顧客們，一個緩和而可以放鬆享用美食的時間與空間……\r\n在絕佳的舒適空間中從容並慎重地品味著珍饉佳餚，我們不只想要滿足顧客的口腹之慾，而是連同從心中滿溢出來的滿足感也想一併提供給顧客們……\r\n在如此的深切想望下，我們將店名取做「月夜岩」( TSUKIYOIWA )。', '台北市中山區雙城街25巷9號', '[\"11:30–14:00 18:00–22:30\",\r\n\"休息\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\"]', '02-2585-9221', 'https://tsukiyoiwa.com/tw/top', 'https://www.facebook.com/tsukiyoiwa/', NULL, 'https://tsukiyoiwa.com/tw/reservation', '2022-01-02 13:32:02', '2022-01-02 13:32:02'),
+(10, '居酒屋', '北部', '大股 熟成燒肉專門-台北忠孝店', '我們是位在台北的燒肉店「大股熟成燒肉專門」。\r\n除了是第一間結合日本和牛和清酒販賣機的主題燒肉店，我們店內的牛肉均採用熟成技術，而經過熟成的肉質會變得更柔軟、脂肪更均勻，連帶的味道也會更加濃郁與多汁！\r\n我們在意每一個入口時都要是美好的口感，追求極致的態度，細膩處理肉品，懂得取捨的道理，去蕪存菁將夢幻肉品呈現給您！\r\n「大口吃肉，大口喝酒」是我們的承諾。', '台北市大安區忠孝東路四段216巷19弄17號', '[\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\"]', '02-2721-6877', 'http://www.oomata.com/h/Index?key=556667067082', 'https://www.facebook.com/oomata.tw', NULL, NULL, '2022-01-02 13:34:47', '2022-01-02 13:34:47'),
+(11, '居酒屋', '中部', '大股熟成燒肉專門 (台中總店)', '我們是位在台中的燒肉店「大股熟成燒肉專門」。\r\n除了是第一間結合日本和牛和清酒販賣機的主題燒肉店，我們店內的牛肉均採用熟成技術，而經過熟成的肉質會變得更柔軟、脂肪更均勻，連帶的味道也會更加濃郁與多汁！\r\n我們在意每一個入口時都要是美好的口感，追求極致的態度，細膩處理肉品，懂得取捨的道理，去蕪存菁將夢幻肉品呈現給您！\r\n「大口吃肉，大口喝酒」是我們的承諾。', '台中市西屯區大安街23號', '[\"12:00–15:00 17:30–23:00\",\r\n\"12:00–15:00 17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\"]', '04-2327-2300', 'http://www.oomata.com/h/Index?key=556667067082', 'https://www.facebook.com/oomata.taichung', NULL, 'https://page.line.me/uop5867t?openQrModal=true', '2022-01-02 13:36:22', '2022-01-02 13:36:22'),
+(12, '居酒屋', '北部', '新串 New Trend', '新串 New Trend，是居酒屋與酒吧的混血，走出懷舊，打造出新潮的時尚和風。我們期待以「串燒Bar」全新的日式餐酒型態，打動都會的飲食男女。', '台北市大安區忠孝東路四段223巷10弄7號', '[\"17:30–01:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–01:00\"]', '02-2711-6169', 'https://new-trend-bar.business.site/?utm_source=gmb&utm_medium=referral', 'https://www.facebook.com/newtrend.yakitoribar/', NULL, 'https://inline.app/booking/-M-hJtXbre-CshVjKPo_:inline-live-1/-M-hJuAf1Qk9jD1jFrLM?fbclid=IwAR0--0Xb-GElpw5NTk2nohY56te6sfENFaMbpdktR-VNkriYFLw8mKTGQwY', '2022-01-02 13:38:08', '2022-01-02 13:38:08');
+
+
 -- --------------------------------------------------------
 
 --
@@ -646,6 +707,46 @@ CREATE TABLE `restaurant_pictures` (
   `res_pic_name` varchar(50) NOT NULL,
   `res_id` int(11) NOT NULL COMMENT 'FK：restaurant.res_id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `restaurant_pictures`
+--
+
+INSERT INTO `restaurant_pictures` (`res_pic_id`, `res_pic_name`, `res_id`) VALUES
+(1, '1-1.jpg', 1),
+(2, '1-2.jpg', 1),
+(3, '1-3.jpg', 1),
+(4, '2-1.jpg', 2),
+(5, '2-2.jpg', 2),
+(6, '2-3.jpg', 2),
+(7, '3-1.jpg', 3),
+(8, '3-2.jpg', 3),
+(9, '3-3.jpg', 3),
+(10, '4-1.jpg', 4),
+(11, '4-2.jpg', 4),
+(12, '4-3.jpg', 4),
+(13, '5-1.jpg', 5),
+(14, '5-2.jpg', 5),
+(15, '6-1.jpg', 6),
+(16, '6-2.jpg', 6),
+(17, '6-3.jpg', 6),
+(18, '7-1.jpg', 7),
+(19, '7-2.jpg', 7),
+(20, '7-3.jpg', 7),
+(21, '8-1.jpg', 8),
+(22, '8-2.jpg', 8),
+(23, '8-3.jpg', 8),
+(24, '9-1.jpg', 9),
+(25, '9-2.jpg', 9),
+(26, '9-3.jpg', 9),
+(27, '10-1.jpg', 10),
+(28, '10-2.jpg', 10),
+(29, '10-3.jpg', 10),
+(30, '11-1.jpg', 11),
+(31, '11-2.jpg', 11),
+(32, '12-1.jpg', 12),
+(33, '12-2.jpg', 12),
+(34, '12-3.jpg', 12);
 
 -- --------------------------------------------------------
 
@@ -675,6 +776,24 @@ CREATE TABLE `special_menu` (
   `sp_menu_name` varchar(50) NOT NULL COMMENT '酒的名稱 搭配 一道菜的名稱',
   `res_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `special_menu`
+--
+
+INSERT INTO `special_menu` (`sp_menu_id`, `sp_menu_pic_name`, `sp_menu_name`, `res_id`) VALUES
+(1, '1.png', '白岩酒造 IWA 5 搭配美國特級肋眼', 1),
+(2, '2.png', '三諸杉 Dio Abita 搭配伊比利豬', 2),
+(3, '3.png', '久保田 萬壽 純米大吟釀搭配日本生蠔', 3),
+(4, '4.png', '大嶺酒造 Ohmine 五粒米 Ver.005搭配花魚一夜干', 4),
+(5, '5.png', '小西酒造 白雪 Cloudy Sake 純米濁酒搭配根島生態蝦', 5),
+(6, '6.png', '天壽 鳥海山 純米大吟釀搭配', 6),
+(7, '7.png', '文佳人 夏 純米吟釀搭配明太子雞腿串', 7),
+(8, '8.png', '水芭蕉 PURE瓶內二次發酵搭配香魚', 8),
+(9, '9.png', '出羽櫻 艶姫 純米吟釀搭配松葉蟹刺身', 9),
+(10, '10.png', '末廣 純米吟釀原酒 冷卸搭配 A5日本和牛上蓋肉', 10),
+(11, '11.png', '美鄉雪華 純米吟釀搭配大股牛肉威靈頓', 11),
+(12, '12.png', '酒田酒造 上喜元 純米 出羽之里搭配鹽烤牛小排佐蒜片', 12);
 
 -- --------------------------------------------------------
 
@@ -1101,7 +1220,7 @@ ALTER TABLE `member`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu_pictures`
 --
 ALTER TABLE `menu_pictures`
-  MODIFY `menu_pic_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `menu_pic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
@@ -1167,13 +1286,13 @@ ALTER TABLE `product_sake`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `restaurant_pictures`
 --
 ALTER TABLE `restaurant_pictures`
-  MODIFY `res_pic_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `res_pic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `shipment_detail`
@@ -1185,7 +1304,7 @@ ALTER TABLE `shipment_detail`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `special_menu`
 --
 ALTER TABLE `special_menu`
-  MODIFY `sp_menu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sp_menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `store`
