@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 04 日 11:41
+-- 產生時間： 2022 年 01 月 04 日 14:41
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -33,6 +33,10 @@ CREATE TABLE `admin` (
   `admin_pass` varchar(100) NOT NULL,
   `user_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `admin`
+--
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_pass`, `user_time`) VALUES
 (1, 'Ashley', 'Ashley', '2022-01-04 00:00:00'),
@@ -123,6 +127,7 @@ INSERT INTO `discount` (`discount_id`, `discount_code`, `discount_info`, `persce
 (4, 'LADYF90', '好味小姐優惠', 0.9, '2022-01-01 11:00:00', '2022-01-31 11:00:00', 1, '2022-01-04 11:00:15', '2022-01-04 11:00:15'),
 (5, 'FRED87', 'Fred專屬優惠', 0.87, '2022-02-01 10:00:00', '2022-02-25 10:00:00', 0, '2022-01-04 11:00:15', '2022-01-04 11:00:15'),
 (6, 'SHINDERLIN', '林新德專屬折扣', 0.9, '2022-01-01 10:00:00', '2022-04-30 10:00:00', 1, '2022-01-04 11:04:45', '2022-01-04 11:04:45');
+
 -- --------------------------------------------------------
 
 --
@@ -145,6 +150,10 @@ CREATE TABLE `event` (
   `event_create_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
   `event_update_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `event`
+--
 
 INSERT INTO `event` (`event_id`, `event_cat_id`, `event_name`, `event_time_start`, `event_time_end`, `event_brief`, `event_location`, `event_intro`, `event_cost`, `event_cover`, `event_condition`, `event_due`, `event_create_date`, `event_update_date`) VALUES
 (2, 1, '日本限定生酒珍饌餐酒會&日本酒品酒課程', '2022-01-08 15:00:00', '2022-01-08 17:00:00', '「日本酒x和食」餐酒會，讓您深入了解日本酒其中的奧妙與和食的搭配', '台北市忠孝東路三段300號 SOGO 復興店 11樓 ,和食EN日本料理', '●關於SAKEMARU\n\n\n全世界的日本酒大多數是在日本生產的，\n日本全境有超過1500家的酒造，\n而每一個酒造都出產數十種不同的日本酒，\n近年來，日本酒開始慢慢流行於日本以外的地方，\n但因為語言的門檻，\n關於日本酒的資訊與知識並不是這麼的輕易了解，\nSAKEMARU的使命是將日本日本酒博大精深的文化、\n傳統與多樣的口感，由淺入深，\n一步一步的帶領想知道更多關於日本酒的人們，\n藉由每個月SAKEMARU為您特選的日本酒，\n更加的瞭解這個文化與它的細節，\n並讓日本酒能在世界的舞台上發揚光大。\n\n\n ●本次活動主題\n\n\nSAKEMARU首次於台灣舉辦餐酒會，\n很榮幸與和食EN日本料理共同籌辦這次的活動。\n我們很榮幸邀請到SAKEMARU執行長兼唎酒師，\n親自與大家說明日本酒的知識與香氣，\n除此之外也會教導大家溫熱清酒的方式，\n讓大家可以更享受清酒在溫度上產生截然不同的變化。\n這次提供五款限定酒款，\n讓日本酒愛好者能夠享受日本酒與和食的餐酒文化，\n請務必來參加體驗！\n\n\n\n ●活動內容\n\n\n1.日本酒知識與品酒筆記\n\n \n我們會和大家一一說明本次日本酒的特色與釀造過程的背景，\n除此之外也帶領大家使用日本酒專用的品酒筆記，\n讓大家詳細了解如何記錄口感以及香氣，\n更可以在清酒的世界中找尋出自己喜歡的口感。\n\n2.日本酒香氣介紹\n\n\nSAKEMARU專程購入日本酒設計的酒鼻子，\n可以趁著難得的機會試著聞看看每一款香氣，\n了解日本清酒的四大類型香氣特色。\n\n3.熱燗！溫熱日本酒的方法\n\n\n怎麼樣才能溫一壺深入人心的熱清酒？\nSAKEMARU就來教導大家，\n溫熱清酒的方式以及需注意的地方，\n也會帶領大家品嚐隨著溫度不同而擁有不同口感的變化，\n這只有日本清酒才會擁有的獨特性。\n\n\n\n\n4.五款日本酒與五款日本和食餐酒搭配\n\n\n這次嚴選五款日本酒款，和日本和食進行搭配，\n讓您體驗日本酒的餐酒搭配方式，\n希望能美酒美食的完美結合，讓您留下感動與深客的回憶！\n\n\n\n酒單&吞酒菜小品料理\n\n■純米酒　旭之出乃勢正宗　冷卸\n厚切豬培根蒜香酒粕味噌焼\n\n\n■瀧自慢　神の穂　秋上がり　純米酒\n烤生菲力牛奶油起司\n\n\n■天寶一　特別純米　八反錦　 しぼりたて生原酒\n土雞卵玉子燒\n\n\n\n■鳩正宗 特別純米酒 華吹雪55 しぼりたて生酒\n鯖魚醃醋刺身\n\n\n\n■町田酒造５５ 特別純米 美山錦 直汲み\n酒蒸白身魚', 1890, '1-1.jpg', '可報名', '2022-01-01 15:00:00', '2022-01-03 15:00:00', '2022-01-03 15:00:00'),
@@ -176,10 +185,15 @@ CREATE TABLE `event_cat` (
   `event_cat_name` varchar(20) NOT NULL COMMENT '餐酒會、品酒會、講座'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `event_cat`
+--
+
 INSERT INTO `event_cat` (`event_cat_id`, `event_cat_name`) VALUES
 (1, '餐酒會'),
 (2, '品酒會'),
 (3, '講座');
+
 -- --------------------------------------------------------
 
 --
@@ -281,7 +295,6 @@ INSERT INTO `guide_q` (`q_id`, `q_cate`, `q_seq`, `q_des`) VALUES
 (7, 'b', 1, '您今天的心情如何呢？'),
 (8, 'b', 2, '您喜歡晴天還是雨天？'),
 (9, 'b', 3, '請問您是什麼星座？');
-
 
 -- --------------------------------------------------------
 
@@ -679,7 +692,7 @@ CREATE TABLE `product_gift_d` (
   `gift_img` varchar(255) NOT NULL,
   `box_color` varchar(10) NOT NULL COMMENT 'b+0000',
   `gift_pro` varchar(50) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 傾印資料表的資料 `product_gift_d`
@@ -730,8 +743,8 @@ CREATE TABLE `product_sake` (
   `pro_condition` varchar(10) NOT NULL COMMENT '補貨中',
   `format_id` int(11) NOT NULL,
   `pro_img` varchar(255) NOT NULL,
-  `pro_creat_time` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
-  `pro_unsell_time` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
+  `pro_creat_time` datetime DEFAULT NULL COMMENT '自然產生',
+  `pro_unsell_time` datetime DEFAULT NULL COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -838,7 +851,6 @@ INSERT INTO `restaurant` (`res_id`, `res_type`, `res_area`, `res_name`, `res_int
 (10, '居酒屋', '北部', '大股 熟成燒肉專門-台北忠孝店', '我們是位在台北的燒肉店「大股熟成燒肉專門」。\r\n除了是第一間結合日本和牛和清酒販賣機的主題燒肉店，我們店內的牛肉均採用熟成技術，而經過熟成的肉質會變得更柔軟、脂肪更均勻，連帶的味道也會更加濃郁與多汁！\r\n我們在意每一個入口時都要是美好的口感，追求極致的態度，細膩處理肉品，懂得取捨的道理，去蕪存菁將夢幻肉品呈現給您！\r\n「大口吃肉，大口喝酒」是我們的承諾。', '台北市大安區忠孝東路四段216巷19弄17號', '[\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\"]', '02-2721-6877', 'http://www.oomata.com/h/Index?key=556667067082', 'https://www.facebook.com/oomata.tw', NULL, NULL, '2022-01-02 13:34:47', '2022-01-02 13:34:47'),
 (11, '居酒屋', '中部', '大股熟成燒肉專門 (台中總店)', '我們是位在台中的燒肉店「大股熟成燒肉專門」。\r\n除了是第一間結合日本和牛和清酒販賣機的主題燒肉店，我們店內的牛肉均採用熟成技術，而經過熟成的肉質會變得更柔軟、脂肪更均勻，連帶的味道也會更加濃郁與多汁！\r\n我們在意每一個入口時都要是美好的口感，追求極致的態度，細膩處理肉品，懂得取捨的道理，去蕪存菁將夢幻肉品呈現給您！\r\n「大口吃肉，大口喝酒」是我們的承諾。', '台中市西屯區大安街23號', '[\"12:00–15:00 17:30–23:00\",\r\n\"12:00–15:00 17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\",\r\n\"17:30–23:00\"]', '04-2327-2300', 'http://www.oomata.com/h/Index?key=556667067082', 'https://www.facebook.com/oomata.taichung', NULL, 'https://page.line.me/uop5867t?openQrModal=true', '2022-01-02 13:36:22', '2022-01-02 13:36:22'),
 (12, '居酒屋', '北部', '新串 New Trend', '新串 New Trend，是居酒屋與酒吧的混血，走出懷舊，打造出新潮的時尚和風。我們期待以「串燒Bar」全新的日式餐酒型態，打動都會的飲食男女。', '台北市大安區忠孝東路四段223巷10弄7號', '[\"17:30–01:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–00:00\",\r\n\"17:30–01:00\"]', '02-2711-6169', 'https://new-trend-bar.business.site/?utm_source=gmb&utm_medium=referral', 'https://www.facebook.com/newtrend.yakitoribar/', NULL, 'https://inline.app/booking/-M-hJtXbre-CshVjKPo_:inline-live-1/-M-hJuAf1Qk9jD1jFrLM?fbclid=IwAR0--0Xb-GElpw5NTk2nohY56te6sfENFaMbpdktR-VNkriYFLw8mKTGQwY', '2022-01-02 13:38:08', '2022-01-02 13:38:08');
-
 
 -- --------------------------------------------------------
 
@@ -952,6 +964,10 @@ CREATE TABLE `store` (
   `store_ser_hours` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `store`
+--
+
 INSERT INTO `store` (`store_id`, `store_name`, `store_address`, `store_ser_hours`) VALUES
 (1, '民生門市', '台北市松山區民生東路四段58號1樓', '星期一 11:30–21:30\r\n星期二 11:30–21:30\r\n星期三 11:30–21:30\r\n星期四 11:30–21:30\r\n星期五 11:30–21:30\r\n星期六 12:00–22:00\r\n星期日 12:00–21:00'),
 (2, '敦一門市', '台北市大安區敦化南路1段196號', '星期一 12:00–22:00\r\n星期二 12:00–22:00\r\n星期三 12:00–22:00\r\n星期四 12:00–22:00\r\n星期五 12:00–22:00\r\n星期六 12:00–22:00\r\n星期日 12:00–22:00'),
@@ -961,6 +977,7 @@ INSERT INTO `store` (`store_id`, `store_name`, `store_address`, `store_ser_hours
 (6, '市政府門市', '台北市信義區忠孝東路五段51號1樓', '星期一 12:00–22:00\r\n星期二 12:00–22:00\r\n星期三 12:00–22:00\r\n星期四 12:00–22:00\r\n星期五 12:00–22:00\r\n星期六 12:00–22:00\r\n星期日 12:00–22:00'),
 (7, '復興門市', '台北市中山區復興北路84號1樓', '星期一 11:30–21:30\r\n星期二 11:30–21:30\r\n星期三 11:30–21:30\r\n星期四 11:30–21:30\r\n星期五 11:30–21:30\r\n星期六 12:00–22:00\r\n星期日 12:00–22:00'),
 (8, '中山門市', '台北市中山北路二段46號1樓', '星期一 11:30–21:30\r\n星期二 11:30–21:30\r\n星期三 11:30–21:30\r\n星期四 11:30–21:30\r\n星期五 11:30–21:30\r\n星期六 12:00–22:00\r\n星期日 12:00–22:00');
+
 -- --------------------------------------------------------
 
 --
@@ -976,10 +993,15 @@ CREATE TABLE `sub_plan` (
   `modified_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `sub_plan`
+--
+
 INSERT INTO `sub_plan` (`sub_id`, `sub_plan`, `sub_products`, `sub_price`, `create_at`, `modified_at`) VALUES
 (1, '純米', '', 1300, '2022-01-03 16:26:22', '2022-01-03 16:26:22'),
 (2, '純米吟釀', '', 1500, '2022-01-03 16:26:22', '2022-01-03 16:26:22'),
 (3, '純米大吟釀', '', 1800, '2022-01-03 16:26:22', '2022-01-03 16:26:22');
+
 -- --------------------------------------------------------
 
 --
@@ -995,10 +1017,15 @@ CREATE TABLE `sub_time` (
   `sub_time_month` int(2) NOT NULL COMMENT '1,6,12'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `sub_time`
+--
+
 INSERT INTO `sub_time` (`subtime_id`, `sub_time`, `sub_discount`, `create_at`, `modified_at`, `sub_time_month`) VALUES
 (1, '一個月', 0.95, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 1),
 (2, '六個月', 0.85, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 6),
 (3, '一年', 0.8, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 12);
+
 -- --------------------------------------------------------
 
 --
