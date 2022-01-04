@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 04 日 10:45
+-- 產生時間： 2022 年 01 月 04 日 11:41
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -215,8 +215,9 @@ CREATE TABLE `member` (
   `member_level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- 傾印資料表的資料 `member`
+--
 
 INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `member_mob`, `member_addr`, `member_level`) VALUES
 (1, 1, 'Daniel', '1994-01-06', '0977777121', '台北市士林區天母東路105巷3號3樓', ''),
@@ -731,9 +732,9 @@ CREATE TABLE `user` (
   `user_time` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
+--
+-- 傾印資料表的資料 `user`
+--
 
 INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (1, 'test001', 'test001', '2022-01-02'),
@@ -742,6 +743,7 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (4, 'test004', 'test004', '2022-01-02'),
 (5, 'test005', 'test005', '2022-01-02'),
 (6, 'test006', 'test006', '2022-01-02');
+
 --
 -- 已傾印資料表的索引
 --
@@ -1093,7 +1095,7 @@ ALTER TABLE `mark`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu_pictures`
@@ -1207,7 +1209,7 @@ ALTER TABLE `sub_time`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 已傾印資料表的限制式
