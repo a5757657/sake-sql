@@ -215,6 +215,17 @@ CREATE TABLE `member` (
   `member_level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `member`
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `member_mob`, `member_addr`, `member_level`) VALUES
+(1, 1, 'Daniel', '1994-01-06', '0977777121', '台北市士林區天母東路105巷3號3樓', ''),
+(2, 2, 'Randy', '1991-07-08', '0933033011', '台北市中山區敬業三路56號8樓', ''),
+(3, 3, 'Willy', '1983-08-12', '0911033022', '台北市內湖區港墘路89號', ''),
+(4, 4, 'Ann', '1997-03-12', '0940442232', '台北市士林區中山北路六段77號', ''),
+(5, 5, 'Frank', '1993-03-04', '0933033011', '台北市北投區同德街55號', ''),
+(6, 6, 'Sam', '1992-01-09', '0970886668', '台北市大同區承德路三段43號', '');
+
 -- --------------------------------------------------------
 
 --
@@ -720,6 +731,17 @@ CREATE TABLE `user` (
   `user_time` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
+(1, 'test001', 'test001', '2022-01-02'),
+(2, 'test002', 'test002', '2022-01-02'),
+(3, 'test003', 'test003', '2022-01-02'),
+(4, 'test004', 'test004', '2022-01-02'),
+(5, 'test005', 'test005', '2022-01-02'),
+(6, 'test006', 'test006', '2022-01-02');
 --
 -- 已傾印資料表的索引
 --
