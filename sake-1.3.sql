@@ -85,6 +85,9 @@ CREATE TABLE `cart_mark` (
   `cart_sake_id` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `cart_mark` (`cart_mark_id`, `mark_id`, `cart_sake_id`) VALUES
+(1, 1, 'S0000000002'),
+(2, 4, 'S0000000004');
 -- --------------------------------------------------------
 
 --
@@ -98,6 +101,11 @@ CREATE TABLE `cart_sake` (
   `cart_quantity` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`) VALUES
+('S0000000001', 1, 12, 2),
+('S0000000002', 5, 18, 1),
+('S0000000003', 4, 3, 1),
+('S0000000004', 6, 28, 3);
 -- --------------------------------------------------------
 
 --
@@ -309,6 +317,11 @@ CREATE TABLE `mark` (
   `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `mark` (`mark_id`, `member_id`, `pics`, `create_at`) VALUES
+(1, 5, '5-1.jpg', '2022-01-04 22:36:07'),
+(2, 5, '5-2.jpg', '2022-01-04 22:36:07'),
+(3, 1, '1-1.jpg', '2022-01-04 22:36:42'),
+(4, 4, '4-1.jpg', '2022-01-04 22:36:42');
 -- --------------------------------------------------------
 
 --
@@ -426,8 +439,8 @@ INSERT INTO `news` (`news_id`, `title`, `content`, `cover_pic`, `pics`, `create_
 --
 
 CREATE TABLE `order_event_d` (
-  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋當天編號三碼＋e＋編號 ex:20210401e00101\r\n自訂格式不勾選A_I',
-  `order_id` int(11) NOT NULL COMMENT 'FK：order_m.order_id',
+  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋e＋三碼編號 ex:20210401e001\r\n自訂格式不勾選A_I',
+  `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `event_id` int(4) NOT NULL COMMENT 'FK：event.event_id',
   `order_name` varchar(225) NOT NULL,
   `order_mobile` varchar(20) NOT NULL,
@@ -436,6 +449,9 @@ CREATE TABLE `order_event_d` (
   `order_state` varchar(10) NOT NULL COMMENT '即將到來、已結束、已取消'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_event_d` (`order_d_id`, `order_id`, `event_id`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
+('20220105e001', '20220105002', 3, 'Ann', '0940442232', 'ann1029@mail.com', 2585, '即將到來'),
+('20220108e001', '20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 800, '即將到來');
 -- --------------------------------------------------------
 
 --
@@ -444,7 +460,7 @@ CREATE TABLE `order_event_d` (
 
 CREATE TABLE `order_gift_d` (
   `order_g_id` int(14) NOT NULL,
-  `order_id` int(11) NOT NULL,
+  `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
   `order_name` varchar(225) NOT NULL,
   `order_mobile` varchar(20) NOT NULL,
@@ -474,13 +490,21 @@ CREATE TABLE `order_gift_d_d` (
 --
 
 CREATE TABLE `order_main` (
-  `order_id` int(11) NOT NULL COMMENT '日期＋當天編號三碼 ex:20210401001\r\n自訂格式不勾選A_I',
+  `order_id` varchar(11) NOT NULL COMMENT '日期＋當天編號三碼 ex:20210401001\r\n自訂格式不勾選A_I',
   `member_id` int(11) NOT NULL COMMENT 'FK：member.member_id',
   `type` varchar(1) NOT NULL COMMENT 'S(sake), E(event), B(subscribe)',
-  `used_code` varchar(10) NOT NULL COMMENT 'FK:discount.discount_code',
+  `used_code` varchar(10) NOT NULL COMMENT '對應discount.discount_code',
   `order_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_date`) VALUES
+('20220102001', 3, 'B', '', '2022-01-02 07:26:09'),
+('20220104001', 1, 'B', '', '2022-01-04 10:57:49'),
+('20220105001', 5, 'B', '', '2022-01-05 09:25:50'),
+('20220105002', 4, 'E', '', '2022-01-05 10:20:14'),
+('20220108001', 6, 'E', '', '2022-01-08 18:20:14'),
+('20220110001', 4, 'S', 'LADYF90', '2022-01-10 11:36:00'),
+('20220112001', 1, 'S', '', '2022-01-12 09:57:00');
 -- --------------------------------------------------------
 
 --
@@ -493,6 +517,9 @@ CREATE TABLE `order_mark` (
   `order_d_id` varchar(14) NOT NULL COMMENT '酒標價錢，前端技術處理'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_mark` (`order_mark_id`, `mark_id`, `order_d_id`) VALUES
+(1, 4, '20220110s00102'),
+(2, 3, '20220112s00102');
 -- --------------------------------------------------------
 
 --
@@ -500,17 +527,22 @@ CREATE TABLE `order_mark` (
 --
 
 CREATE TABLE `order_sake_d` (
-  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋當天編號三碼＋s＋編號 ex:20210401s00101\r\n自定義名稱不勾選A_I',
-  `order_id` int(11) NOT NULL COMMENT 'FK：order_m.order_id',
+  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋s＋三碼編號 ＋兩碼編號ex:20210401s00101\r\n自定義名稱不勾選A_I',
+  `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `pro_id` int(11) NOT NULL COMMENT 'FK:清酒.商品編號',
   `order_quantity` int(2) NOT NULL,
-  `order_name` int(225) NOT NULL,
+  `order_name` varchar(225) NOT NULL,
   `order_mobile` varchar(20) NOT NULL,
   `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL COMMENT '撈清酒.價格*數量',
   `order_state` varchar(10) NOT NULL COMMENT '待出貨、已出貨、已取消'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
+('20220110s00101', '20220110001', 42, 2, 'Ann', '0940442232', 'ann1029@mail.com', 2760, '待出貨'),
+('20220110s00102', '20220110001', 29, 1, 'Ann', '0940442232', 'ann1029@mail.com', 880, '待出貨'),
+('20220112s00101', '20220112001', 54, 3, 'Daniel', '0977777121', 'dan093@mail.com', 2640, '待出貨'),
+('20220112s00102', '20220112001', 28, 1, 'Daniel', '0977777121', 'dan093@mail.com', 1580, '待出貨');
 -- --------------------------------------------------------
 
 --
@@ -518,16 +550,20 @@ CREATE TABLE `order_sake_d` (
 --
 
 CREATE TABLE `order_sub_d` (
-  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋當天編號三碼＋b＋編號ex:20210401b00101\r\n自訂名稱不勾選A_I',
-  `order_id` int(11) NOT NULL COMMENT 'FK：order_m.order_id',
+  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋b＋編號ex:20210401b001\r\n自訂名稱不勾選A_I',
+  `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `sub_id` int(5) NOT NULL,
   `subtime_id` int(11) NOT NULL,
   `order_mobile` varchar(20) NOT NULL,
   `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL COMMENT '撈訂閱方案.價格 * 訂閱週期.月數*訂閱週期.折扣',
-  `order_state` varchar(10) NOT NULL COMMENT '進行中、已結束'
+  `order_state` varchar(10) NOT NULL DEFAULT '進行中' COMMENT '進行中、已結束'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
+('20220102b001', '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
+('20220104b001', '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
+('20220105b001', '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中');
 -- --------------------------------------------------------
 
 --
@@ -536,7 +572,7 @@ CREATE TABLE `order_sub_d` (
 
 CREATE TABLE `payment_detail` (
   `payment_detail_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL COMMENT 'FK: order_main.order_id\r\nex:20210401001',
+  `order_id` varchar(11) NOT NULL COMMENT 'FK: order_main.order_id\r\nex:20210401001',
   `card_num` int(16) NOT NULL,
   `security_code` int(3) NOT NULL,
   `expire_date` int(4) NOT NULL
@@ -889,7 +925,7 @@ INSERT INTO `restaurant_pictures` (`res_pic_id`, `res_pic_name`, `res_id`) VALUE
 
 CREATE TABLE `shipment_detail` (
   `shipment_detail_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
+  `order_id` varchar(11) NOT NULL,
   `tracking_num` int(12) NOT NULL,
   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
   `store_id` int(11) NOT NULL,
@@ -975,9 +1011,9 @@ CREATE TABLE `sub_plan` (
 --
 
 INSERT INTO `sub_plan` (`sub_id`, `sub_plan`, `sub_products`, `sub_price`, `create_at`, `modified_at`) VALUES
-(1, '純米', '', 1300, '2022-01-03 16:26:22', '2022-01-03 16:26:22'),
-(2, '純米吟釀', '', 1500, '2022-01-03 16:26:22', '2022-01-03 16:26:22'),
-(3, '純米大吟釀', '', 1800, '2022-01-03 16:26:22', '2022-01-03 16:26:22');
+(1, '純米', '作 玄乃智、作 惠乃智', 1300, '2022-01-03 16:26:22', '2022-01-05 14:31:37'),
+(2, '純米吟釀', '真澄 辛口生一本 純米吟醸', 1509, '2022-01-03 16:26:22', '2022-01-05 14:59:39'),
+(3, '純米大吟釀', '鳳凰源平 純米大吟醸', 1809, '2022-01-03 16:26:22', '2022-01-05 15:03:54');
 
 -- --------------------------------------------------------
 
@@ -988,7 +1024,7 @@ INSERT INTO `sub_plan` (`sub_id`, `sub_plan`, `sub_products`, `sub_price`, `crea
 CREATE TABLE `sub_time` (
   `subtime_id` int(11) NOT NULL,
   `sub_time` varchar(225) NOT NULL COMMENT '一個月、六個月、一年',
-  `sub_discount` float NOT NULL COMMENT '0.95,0.85,0.8',
+  `sub_discount` float NOT NULL COMMENT '1,0.85,0.8',
   `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
   `modified_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
   `sub_time_month` int(2) NOT NULL COMMENT '1,6,12'
@@ -999,7 +1035,7 @@ CREATE TABLE `sub_time` (
 --
 
 INSERT INTO `sub_time` (`subtime_id`, `sub_time`, `sub_discount`, `create_at`, `modified_at`, `sub_time_month`) VALUES
-(1, '一個月', 0.95, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 1),
+(1, '一個月', 1, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 1),
 (2, '六個月', 0.85, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 6),
 (3, '一年', 0.8, '2022-01-03 16:27:50', '2022-01-03 16:27:50', 12);
 
@@ -1325,7 +1361,7 @@ ALTER TABLE `cart_gift_d_d`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
 --
 ALTER TABLE `cart_mark`
-  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `discount`
@@ -1373,7 +1409,7 @@ ALTER TABLE `guide_q`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mark`
 --
 ALTER TABLE `mark`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
@@ -1409,7 +1445,7 @@ ALTER TABLE `order_gift_d_d`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_mark`
 --
 ALTER TABLE `order_mark`
-  MODIFY `order_mark_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
