@@ -1011,8 +1011,8 @@ INSERT INTO `sub_time` (`subtime_id`, `sub_time`, `sub_discount`, `create_at`, `
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `user_account` varchar(20) NOT NULL,
-  `user_pass` varchar(100) NOT NULL,
+  `user_account` varchar(20) DEFAULT NULL,
+  `user_pass` varchar(100) DEFAULT NULL,
   `user_time` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
