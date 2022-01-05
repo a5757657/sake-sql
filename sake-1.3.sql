@@ -551,6 +551,7 @@ CREATE TABLE `payment_detail` (
 CREATE TABLE `product_container` (
   `container_id` int(11) NOT NULL,
   `container_img` varchar(255) NOT NULL,
+  `container_shadow` varchar(255) NOT NULL,
   `container_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -558,17 +559,12 @@ CREATE TABLE `product_container` (
 -- 傾印資料表的資料 `product_container`
 --
 
-INSERT INTO `product_container` (`container_id`, `container_img`, `container_name`) VALUES
-(1, '4-1.jpg', '陶器酒壺'),
-(2, '4-2.jpg', '陶器豬口杯'),
-(3, '3.jpg', '津輕金箔玻璃清酒杯'),
-(4, '1-1.png', '純錫製清酒瓶和木造清酒杯的套組'),
-(5, '1-2.png', '純錫製清酒瓶'),
-(6, '1-3.png', '木造清酒杯'),
-(7, '1-4.png', '純錫製清酒瓶和木造清酒杯的套組'),
-(8, '1-5.png', '純錫製清酒瓶和木造清酒杯的套組'),
-(9, '2.png', '純錫豬口杯'),
-(10, '0', '無');
+INSERT INTO `product_container` (`container_id`, `container_img`, `container_shadow`, `container_name`) VALUES
+(1, '4-o.jpg', '4-s.jpg', '陶器酒壺和清酒杯組'),
+(2, '3-o.jpg', '3-s.jpg', '津輕金箔玻璃清酒杯'),
+(3, '1-o.png', '1-s.jpg', '純錫製清酒瓶和木造清酒杯的套組'),
+(4, '2-o.png', '2-s.jpg', '純錫豬口杯'),
+(5, 'null', 'null', 'null');
 
 -- --------------------------------------------------------
 
@@ -690,7 +686,7 @@ CREATE TABLE `product_gift_d` (
   `gift_d_id` int(11) NOT NULL,
   `gift_id` int(11) NOT NULL COMMENT '1,1,2,2,3,3,',
   `gift_img` varchar(255) NOT NULL,
-  `box_color` varchar(10) NOT NULL COMMENT 'b+0000',
+  `box_color` varchar(10) NOT NULL COMMENT 'black/gold/white',
   `gift_pro` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -699,34 +695,15 @@ CREATE TABLE `product_gift_d` (
 --
 
 INSERT INTO `product_gift_d` (`gift_d_id`, `gift_id`, `gift_img`, `box_color`, `gift_pro`) VALUES
-(1, 2, 'w0013.jpg', 'w0013', '13'),
-(2, 2, 'b0013.jpg', 'b0013', '13'),
-(3, 2, 'g0016.jpg', 'g0016', '16'),
-(4, 2, 'b0016.jpg', 'b0016', '16'),
-(5, 2, 'g0026.jpg', 'g0026', '26'),
-(6, 2, 'w0026.jpg', 'w0026', '26'),
-(7, 2, 'g0030.jpg', 'g0030', '30'),
-(8, 2, 'w0030.jpg', 'w0030', '30'),
-(9, 2, 'g0033.jpg', 'g0033', '33'),
-(10, 2, 'b0033.jpg', 'b0033', '33'),
-(11, 2, 'b0040.jpg', 'b0040', '40'),
-(12, 2, 'w0040.jpg', 'w0040', '40'),
-(17, 3, 'gold.jpg', 'gold', '8+17+18+23+24+25'),
-(18, 3, 'black.jpg', 'black', '8+17+18+23+24+25'),
-(19, 3, 'red.jpg', 'red', '8+17+18+23+24+25'),
-(20, 3, 'white.jpg', 'white', '8+17+18+23+24+25'),
-(21, 4, 'b0014.jpg', 'b0014', '14'),
-(22, 4, 'w0014.jpg', 'w0014', '14'),
-(23, 4, 'b0015.jpg', 'b0015', '15'),
-(24, 4, 'w0015.jpg', 'w0015', '15'),
-(25, 4, 'b0021.jpg', 'b0021', '21'),
-(26, 4, 'w0021.jpg', 'w0021', '21'),
-(27, 4, 'g0034.jpg', 'g0034', '34'),
-(28, 4, 'b0034.jpg', 'b0034', '34'),
-(29, 4, 'g0042.jpg', 'g0042', '42'),
-(30, 4, 'w0042.jpg', 'w0042', '42'),
-(31, 4, 'g0055.jpg', 'g0055', '55'),
-(32, 4, 'w0055.jpg', 'w0055', '55');
+(1, 2, 'black-1.jpg', 'black', '13+16+26+30+33+40'),
+(2, 2, 'gold-1.jpg', 'gold', '13+16+26+30+33+40'),
+(3, 2, 'white-1.jpg', 'white', '13+16+26+30+33+40'),
+(4, 3, 'black-2.jpg', 'black', '8+17+18+23+24+25'),
+(5, 3, 'gold-2.jpg', 'gold', '8+17+18+23+24+25'),
+(6, 3, 'white-2.jpg', 'white', '8+17+18+23+24+25'),
+(7, 4, 'black-2.jpg', 'black', '14+15+21+34+42+55'),
+(8, 4, 'gold-2.jpg', 'gold', '14+15+21+34+42+55'),
+(9, 4, 'white-2.jpg', 'white', '14+15+21+34+42+55');
 
 -- --------------------------------------------------------
 
@@ -1263,7 +1240,7 @@ ALTER TABLE `product_gift`
 --
 ALTER TABLE `product_gift_d`
   ADD PRIMARY KEY (`gift_d_id`),
-  ADD UNIQUE KEY `box_color` (`box_color`),
+  ADD KEY `box_color` (`box_color`),
   ADD KEY `gift_id` (`gift_id`);
 
 --
