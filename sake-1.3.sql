@@ -659,8 +659,8 @@ CREATE TABLE `product_format` (
   `pro_alco` int(5) NOT NULL,
   `pro_marker` varchar(50) NOT NULL,
   `rice` varchar(50) NOT NULL COMMENT '雄町',
-  `pro-taste` varchar(100) NOT NULL COMMENT '厚薄、酸甜、辛口',
-  `pro-temp` varchar(100) NOT NULL COMMENT '冷藏',
+  `pro_taste` varchar(100) NOT NULL COMMENT '厚薄、酸甜、辛口',
+  `pro_temp` varchar(100) NOT NULL COMMENT '冷藏',
   `pro_gift` int(5) NOT NULL,
   `pro_mark` tinyint(1) NOT NULL,
   `container_id` int(11) NOT NULL COMMENT '1+1禮盒酒器要從規格表去拿'
@@ -670,7 +670,7 @@ CREATE TABLE `product_format` (
 -- 傾印資料表的資料 `product_format`
 --
 
-INSERT INTO `product_format` (`format_id`, `pro_price`, `pro_capacity`, `pro_loca`, `pro_level`, `pro_brand`, `pro_essence`, `pro_alco`, `pro_marker`, `rice`, `pro-taste`, `pro-temp`, `pro_gift`, `pro_mark`, `container_id`) VALUES
+INSERT INTO `product_format` (`format_id`, `pro_price`, `pro_capacity`, `pro_loca`, `pro_level`, `pro_brand`, `pro_essence`, `pro_alco`, `pro_marker`, `rice`, `pro_taste`, `pro_temp`, `pro_gift`, `pro_mark`, `container_id`) VALUES
 (1, 1880, 720, '奈良縣', '純米大吟釀', '篠峯', 50, 16, '千代酒造', '雄町', '輕盈中口偏甜', '冷酒常溫', 0, 0, 5),
 (2, 2080, 720, '山形縣', '純米大吟釀', '榮光富士', 50, 17, '冨士酒造', '美山錦', '適中甘口偏酸', '冷酒常溫燗酒', 0, 0, 5),
 (3, 1280, 720, '滋賀縣', '純米酒', '喜樂長', 65, 16, '喜多酒造', '吟吹雪 山田錦', '輕盈甘口偏甜', '常溫燗酒', 0, 0, 5),
