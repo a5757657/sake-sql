@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-01-05 16:08:00
+-- 產生時間： 2022-01-06 10:17:39
 -- 伺服器版本： 10.4.22-MariaDB
 -- PHP 版本： 7.4.27
 
@@ -54,12 +54,21 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_pass`, `user_time`) VALUES
 --
 
 CREATE TABLE `cart_gift` (
-  `cart_gift_id` varchar(14) NOT NULL COMMENT '訂單S開頭 不勾選A_I',
+  `cart_gift_id` varchar(14) NOT NULL COMMENT '訂單G開頭 不勾選A_I',
   `member_id` int(11) NOT NULL,
   `cart_quantity` int(2) NOT NULL,
   `gift_id` int(11) NOT NULL,
   `box_color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `cart_gift`
+--
+
+INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`, `box_color`) VALUES
+('G0000000001', 4, 1, 2, 'black'),
+('G0000000002', 6, 1, 3, 'white'),
+('G0000000003', 3, 2, 4, 'gold');
 
 -- --------------------------------------------------------
 
@@ -73,6 +82,15 @@ CREATE TABLE `cart_gift_d_d` (
   `pro_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `cart_gift_d_d`
+--
+
+INSERT INTO `cart_gift_d_d` (`cart_g_pro_id`, `cart_gift_id`, `pro_id`) VALUES
+(1, 'G0000000001', 13),
+(2, 'G0000000002', 23),
+(3, 'G0000000002', 24),
+(4, 'G0000000003', 14);
 -- --------------------------------------------------------
 
 --
@@ -84,6 +102,10 @@ CREATE TABLE `cart_mark` (
   `mark_id` int(11) NOT NULL,
   `cart_sake_id` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `cart_mark`
+--
 
 INSERT INTO `cart_mark` (`cart_mark_id`, `mark_id`, `cart_sake_id`) VALUES
 (1, 1, 'S0000000002'),
@@ -100,6 +122,10 @@ CREATE TABLE `cart_sake` (
   `pro_id` int(11) NOT NULL,
   `cart_quantity` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `cart_sake`
+--
 
 INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`) VALUES
 ('S0000000001', 1, 12, 2),
@@ -322,6 +348,7 @@ INSERT INTO `mark` (`mark_id`, `member_id`, `pics`, `create_at`) VALUES
 (2, 5, '5-2.jpg', '2022-01-04 22:36:07'),
 (3, 1, '1-1.jpg', '2022-01-04 22:36:42'),
 (4, 4, '4-1.jpg', '2022-01-04 22:36:42');
+
 -- --------------------------------------------------------
 
 --
@@ -449,9 +476,14 @@ CREATE TABLE `order_event_d` (
   `order_state` varchar(10) NOT NULL COMMENT '即將到來、已結束、已取消'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `order_event_d`
+--
+
 INSERT INTO `order_event_d` (`order_d_id`, `order_id`, `event_id`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
 ('20220105e001', '20220105002', 3, 'Ann', '0940442232', 'ann1029@mail.com', 2585, '即將到來'),
 ('20220108e001', '20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 800, '即將到來');
+
 -- --------------------------------------------------------
 
 --
@@ -459,7 +491,7 @@ INSERT INTO `order_event_d` (`order_d_id`, `order_id`, `event_id`, `order_name`,
 --
 
 CREATE TABLE `order_gift_d` (
-  `order_g_id` int(14) NOT NULL,
+  `order_g_id` varchar(14) NOT NULL COMMENT '日期＋g＋三碼編號 ex:20210401g001 自訂格式不勾選A_I',
   `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
   `order_name` varchar(225) NOT NULL,
@@ -471,6 +503,11 @@ CREATE TABLE `order_gift_d` (
   `box_color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
+('20220111g001', '20220111001', 2, 'Ann', '0940442232', 'ann1029@mail.com', 3820, '待出貨', 3, 'black'),
+('20220112g001', '20220112002', 1, 'Daniel', '0977777121', 'dan093@mail.com', 2980, '待出貨', 2, 'white'),
+('20220114g001', '20220114001', 1, 'Sam', '0970886668', 'sam1983@mail.com', 2280, '待出貨', 4, 'gold');
+
 -- --------------------------------------------------------
 
 --
@@ -479,10 +516,19 @@ CREATE TABLE `order_gift_d` (
 
 CREATE TABLE `order_gift_d_d` (
   `order_g_pro_id` int(14) NOT NULL,
-  `order_g_id` int(14) NOT NULL,
+  `order_g_id` varchar(14) NOT NULL,
   `pro_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `order_gift_d_d`
+--
+
+INSERT INTO `order_gift_d_d` (`order_g_pro_id`, `order_g_id`, `pro_id`) VALUES
+(1, '20220111g001', 17),
+(2, '20220111g001', 8),
+(3, '20220112g001', 13),
+(4, '20220114g001', 15);
 -- --------------------------------------------------------
 
 --
@@ -496,6 +542,9 @@ CREATE TABLE `order_main` (
   `used_code` varchar(10) NOT NULL COMMENT '對應discount.discount_code',
   `order_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+--
+-- 傾印資料表的資料 `order_main`
+--
 
 INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_date`) VALUES
 ('20220102001', 3, 'B', '', '2022-01-02 07:26:09'),
@@ -504,7 +553,10 @@ INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_d
 ('20220105002', 4, 'E', '', '2022-01-05 10:20:14'),
 ('20220108001', 6, 'E', '', '2022-01-08 18:20:14'),
 ('20220110001', 4, 'S', 'LADYF90', '2022-01-10 11:36:00'),
-('20220112001', 1, 'S', '', '2022-01-12 09:57:00');
+('20220111001', 4, 'G', '', '2022-01-11 09:31:59'),
+('20220112001', 1, 'S', '', '2022-01-12 09:57:00'),
+('20220112002', 1, 'G', '', '2022-01-12 09:30:46'),
+('20220114001', 6, 'G', '', '2022-01-14 09:30:46');
 -- --------------------------------------------------------
 
 --
@@ -517,9 +569,14 @@ CREATE TABLE `order_mark` (
   `order_d_id` varchar(14) NOT NULL COMMENT '酒標價錢，前端技術處理'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `order_mark`
+--
+
 INSERT INTO `order_mark` (`order_mark_id`, `mark_id`, `order_d_id`) VALUES
 (1, 4, '20220110s00102'),
 (2, 3, '20220112s00102');
+
 -- --------------------------------------------------------
 
 --
@@ -537,6 +594,10 @@ CREATE TABLE `order_sake_d` (
   `order_d_price` int(10) NOT NULL COMMENT '撈清酒.價格*數量',
   `order_state` varchar(10) NOT NULL COMMENT '待出貨、已出貨、已取消'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `order_sake_d`
+--
 
 INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
 ('20220110s00101', '20220110001', 42, 2, 'Ann', '0940442232', 'ann1029@mail.com', 2760, '待出貨'),
@@ -559,6 +620,10 @@ CREATE TABLE `order_sub_d` (
   `order_d_price` int(10) NOT NULL COMMENT '撈訂閱方案.價格 * 訂閱週期.月數*訂閱週期.折扣',
   `order_state` varchar(10) NOT NULL DEFAULT '進行中' COMMENT '進行中、已結束'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `order_sub_d`
+--
 
 INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
 ('20220102b001', '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
@@ -1198,6 +1263,7 @@ ALTER TABLE `order_event_d`
 --
 ALTER TABLE `order_gift_d`
   ADD PRIMARY KEY (`order_g_id`),
+  ADD UNIQUE KEY `order_g_id` (`order_g_id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `box_color` (`box_color`),
   ADD KEY `gift_id` (`gift_id`);
@@ -1207,13 +1273,15 @@ ALTER TABLE `order_gift_d`
 --
 ALTER TABLE `order_gift_d_d`
   ADD PRIMARY KEY (`order_g_pro_id`),
-  ADD KEY `order_g_id` (`order_g_id`);
+ ADD KEY `order_g_id` (`order_g_id`),
+  ADD KEY `pro_id` (`pro_id`);
 
 --
 -- 資料表索引 `order_main`
 --
 ALTER TABLE `order_main`
   ADD PRIMARY KEY (`order_id`),
+  ADD UNIQUE KEY `order_id` (`order_id`),
   ADD KEY `member_id` (`member_id`);
 
 --
@@ -1355,7 +1423,7 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  MODIFY `cart_g_pro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_g_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
@@ -1430,16 +1498,10 @@ ALTER TABLE `news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d`
---
-ALTER TABLE `order_gift_d`
-  MODIFY `order_g_id` int(14) NOT NULL AUTO_INCREMENT;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d_d`
 --
 ALTER TABLE `order_gift_d_d`
-  MODIFY `order_g_pro_id` int(14) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_g_pro_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_mark`
@@ -1626,7 +1688,8 @@ ALTER TABLE `order_gift_d`
 -- 資料表的限制式 `order_gift_d_d`
 --
 ALTER TABLE `order_gift_d_d`
-  ADD CONSTRAINT `order_gift_d_d_ibfk_1` FOREIGN KEY (`order_g_id`) REFERENCES `order_gift_d` (`order_g_id`);
+ ADD CONSTRAINT `order_gift_d_d_ibfk_1` FOREIGN KEY (`order_g_id`) REFERENCES `order_gift_d` (`order_g_id`),
+  ADD CONSTRAINT `order_gift_d_d_ibfk_2` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`);
 
 --
 -- 資料表的限制式 `order_main`
