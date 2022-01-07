@@ -2,9 +2,9 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- 主機： localhost
--- 產生時間： 2022 年 01 月 05 日 23:05
--- 伺服器版本： 10.4.21-MariaDB
+-- 主機： 127.0.0.1
+-- 產生時間： 2022-01-07 21:36:47
+-- 伺服器版本： 10.4.22-MariaDB
 -- PHP 版本： 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -91,6 +91,7 @@ INSERT INTO `cart_gift_d_d` (`cart_g_pro_id`, `cart_gift_id`, `pro_id`) VALUES
 (2, 'G0000000002', 23),
 (3, 'G0000000002', 24),
 (4, 'G0000000003', 14);
+
 -- --------------------------------------------------------
 
 --
@@ -509,6 +510,10 @@ CREATE TABLE `order_gift_d` (
   `box_color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `order_gift_d`
+--
+
 INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
 ('20220111g001', '20220111001', 2, 'Ann', '0940442232', 'ann1029@mail.com', 3820, '待出貨', 3, 'black'),
 ('20220112g001', '20220112002', 1, 'Daniel', '0977777121', 'dan093@mail.com', 2980, '待出貨', 2, 'white'),
@@ -535,6 +540,7 @@ INSERT INTO `order_gift_d_d` (`order_g_pro_id`, `order_g_id`, `pro_id`) VALUES
 (2, '20220111g001', 8),
 (3, '20220112g001', 13),
 (4, '20220114g001', 15);
+
 -- --------------------------------------------------------
 
 --
@@ -548,9 +554,6 @@ CREATE TABLE `order_main` (
   `used_code` varchar(10) NOT NULL COMMENT '對應discount.discount_code',
   `order_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
---
--- 傾印資料表的資料 `order_main`
---
 
 --
 -- 傾印資料表的資料 `order_main`
@@ -567,6 +570,7 @@ INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_d
 ('20220112001', 1, 'S', '', '2022-01-12 09:57:00'),
 ('20220112002', 1, 'G', '', '2022-01-12 09:30:46'),
 ('20220114001', 6, 'G', '', '2022-01-14 09:30:46');
+
 -- --------------------------------------------------------
 
 --
@@ -920,8 +924,8 @@ CREATE TABLE `restaurant` (
   `fb_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
   `ig_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
   `booking_link` varchar(255) DEFAULT NULL COMMENT '可為空值',
-  `res_create_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生',
-  `res_update_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
+  `res_create_date` datetime NOT NULL COMMENT '自然產生',
+  `res_update_date` datetime NOT NULL COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -934,7 +938,7 @@ INSERT INTO `restaurant` (`res_id`, `res_type`, `res_area`, `res_name`, `res_int
 (3, '居酒屋', '北部', '獨樂清酒食堂 Koma Sake Bistro', '有別於台灣，在日本，居酒屋就是讓日常生活中充滿壓力的人在下班後能夠紓解一天緊張的心情，私下和同事、朋友聯絡感情的地方，希望能把日本居酒屋的文化帶來台灣。台北超級隱藏版日式餐酒館【獨樂清酒食堂 Koma Sake Bistro】，\r\n\r\n以多元化日本清酒及道地居酒屋料理為主，還有熱情親切的服務吸引客人向隅，來到這兒可以盡情放鬆的享用美食及美酒，紓解日常生活的壓力。', '台北市大同區重慶北路一段1號2樓', '[\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\"]', '02-2558-0836', NULL, 'https://www.facebook.com/Koma2F/', NULL, 'https://inline.app/booking/-LhPREP3g3atpZGJVjQz%3Ainline-live-2a466/-LhPRESxDueQIB0eVDm7?step=0&fbclid=IwAR11lqm7LAn99H1JYYaunKhepHiw51UuSiiLSpNnn7vAGYtZxAOHuJ2Vx14', '2022-01-02 05:32:16', '2022-01-02 05:32:16'),
 (4, 'Sake Bar', '北部', '知心寮', '位於台北市林森北路145巷內、九條通裡頭的「知心寮」，是以燒酎、日本酒為主題的日式居酒屋，不僅講日文、英文都能通，且老闆更是領有國際唎酒師的達人，都會依照每個人的喜好來推薦、介紹，讓每位客人都能喝到適合自己的酒類；此外這裡也有販售純米大吟釀、水果酒、清酒、啤酒甚至無酒精飲品、日本汽水等，足以滿足各種族群的需求!', '台北市中山區林森北路145巷17號1樓', '[\"18:00–00:00\",\r\n\"休息\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\"]', '02-2531-5961', NULL, 'https://www.facebook.com/知心寮-107889457717193/', NULL, 'https://inline.app/booking/-MqxACFm8CDdynV0E_Vh:inline-live-2/-MqxACU3td_H0HdsUWUB?fbclid=IwAR1QuE7eph_bQyjE23sHwzEXzuupPOMZYXsyYYuHOcWyHlOyAFNlJ6Qlxjg', '2022-01-02 13:19:13', '2022-01-02 13:19:13'),
 (5, '居酒屋', '中部', '板前燒肉一徹', '台中燒肉你都吃哪家？這家藏在巷子裡的板前燒肉“一徹”你一定不能錯過，全程桌邊服務～更能享受老闆嚴選食材的頂級美味，單點或是交給老闆搭配套餐通通都可以，絕佳烤功保證會一吃上癮！', '台中市中區民族路227號', '[\"18:00–01:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–00:00\",\r\n\"18:00–01:00\"]', '04-22275353', NULL, 'https://www.facebook.com/nikuittetsu/?ref=page_internal', 'https://www.instagram.com/yakinikuittetsu/', 'https://inline.app/booking/-Lt8IklokDZk2tyKebkv:inline-live-1/-Lt8IkpknSMuxZzupKo4', '2022-01-02 13:19:13', '2022-01-02 13:19:13'),
-(6, 'Fine Dining', '中部', '指月亭 和風料理', '員林人氣日式料理店，食材新鮮可期，刀工精湛，每道料理絕對色香味俱全，讓你彷彿置身日本居酒屋！指月亭首推職人手作辣椒醬，每每開放販售必定秒殺，來店裏絕對不能錯過！', '彰化縣員林市大同路二段102號', '[\"11:30–14:00 17:00–21:00\",\r\n\"11:30–14:00 17:00–21:00\",\r\n\"休息\",\r\n\"16:30–22:00\",\r\n\"16:30–22:00\"\r\n\"16:30–22:00\"\r\n\"16:30–22:00\"]', '04-833-8919', 'https://japanese-authentic-restaurant-57.business.site', 'https://www.facebook.com/Chigetsutei/', NULL, NULL, '2022-01-02 13:25:39', '2022-01-02 13:25:39'),
+(6, 'Fine Dining', '中部', '指月亭 和風料理', '員林人氣日式料理店，食材新鮮可期，刀工精湛，每道料理絕對色香味俱全，讓你彷彿置身日本居酒屋！指月亭首推職人手作辣椒醬，每每開放販售必定秒殺，來店裏絕對不能錯過！', '彰化縣員林市大同路二段102號', '[\"11:30–14:00 17:00–21:00\",\n\"11:30–14:00 17:00–21:00\",\n\"休息\",\n\"16:30–22:00\",\n\"16:30–22:00\",\n\"16:30–22:00\",\n\"16:30–22:00\"]', '04-833-8919', 'https://japanese-authentic-restaurant-57.business.site', 'https://www.facebook.com/Chigetsutei/', NULL, NULL, '2022-01-02 13:25:39', '2022-01-02 13:25:39'),
 (7, '居酒屋', '南部', '柶築晚酌の店', '左營區重清路居酒屋-居酒手作料理，刺身、握壽司、串燒、燒烤、揚物、創意料理、orion生啤、日本sake，給晚下班想小酌的您一個日式氛圍，放鬆、及填飽肚子的地方。', '高雄市左營區重清路31號', '[\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"休息\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\",\r\n\"17:30–01:00\"]', '0930-733-808', NULL, 'https://www.facebook.com/SiZhuWanZhuonoDian/', 'https://www.instagram.com/sizhuwanzhuonodian/', NULL, '2022-01-02 13:27:25', '2022-01-02 13:27:25'),
 (8, 'Fine Dining', '北部', '祥雲龍吟', '透過與在地農家與漁家交流，深入理解台灣季節轉化與食材特色，每日運用台灣豐富及新鮮物產，結合龍吟流的料理技巧，展演出兼具傳統創新的懷石料理。祥雲龍吟發源自日本東京，是龍吟日本在台灣的分店，主廚山本征治以台灣豐富物產創造獨有特色，致力創造難忘的餐飲體驗。\r\n料理長稗田良平先生依循龍吟創辦者山本征治先生的料理精神，透過與在地農家與漁家交流，深入理解台灣季節轉化與食材特色，每日運用台灣豐富及新鮮物產，結合龍吟流的料理技巧，展演出兼具傳統創新的懷石料理。\r\n「龍吟」來是取自佛家禪語的「龍吟雲起」。', '台北市中山區樂群三路301號5樓', '[\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"休息\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\",\r\n\"18:00–21:00\"]', '02-8501-5808', 'https://www.nihonryori-ryugin.com.tw/zh/default.aspx', 'https://www.facebook.com/ShounRyugin/', NULL, 'https://www.nihonryori-ryugin.com.tw/zh/RyBooking.aspx', '2022-01-02 13:29:08', '2022-01-02 13:29:08'),
 (9, 'Fine Dining', '北部', '月夜岩 蟹懷石', '試想，在寂靜的春夜下晚風習習、心情舒暢，此時停佇在海岸邊，望著遼闊的大海和朦朧而柔和的月光相照相映；沉靜於如此場景的同時，我們想要提供給在此用餐的重要顧客們，一個緩和而可以放鬆享用美食的時間與空間……\r\n在絕佳的舒適空間中從容並慎重地品味著珍饉佳餚，我們不只想要滿足顧客的口腹之慾，而是連同從心中滿溢出來的滿足感也想一併提供給顧客們……\r\n在如此的深切想望下，我們將店名取做「月夜岩」( TSUKIYOIWA )。', '台北市中山區雙城街25巷9號', '[\"11:30–14:00 18:00–22:30\",\r\n\"休息\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\",\r\n\"11:30–14:00 18:00–22:30\"]', '02-2585-9221', 'https://tsukiyoiwa.com/tw/top', 'https://www.facebook.com/tsukiyoiwa/', NULL, 'https://tsukiyoiwa.com/tw/reservation', '2022-01-02 13:32:02', '2022-01-02 13:32:02'),
@@ -1018,7 +1022,7 @@ CREATE TABLE `shipment_detail` (
 
 CREATE TABLE `special_menu` (
   `sp_menu_id` int(11) NOT NULL,
-  `sp_menu_pic_name` varchar(50) NOT NULL COMMENT '訂單備註',
+  `sp_menu_pic_name` varchar(50) NOT NULL COMMENT '酒的圖片檔名',
   `sp_menu_name` varchar(50) NOT NULL COMMENT '酒的名稱 搭配 一道菜的名稱',
   `res_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1285,7 +1289,7 @@ ALTER TABLE `order_gift_d`
 --
 ALTER TABLE `order_gift_d_d`
   ADD PRIMARY KEY (`order_g_pro_id`),
- ADD KEY `order_g_id` (`order_g_id`),
+  ADD KEY `order_g_id` (`order_g_id`),
   ADD KEY `pro_id` (`pro_id`);
 
 --
@@ -1679,7 +1683,7 @@ ALTER TABLE `member`
 -- 資料表的限制式 `menu_pictures`
 --
 ALTER TABLE `menu_pictures`
-  ADD CONSTRAINT `menu_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`);
+  ADD CONSTRAINT `menu_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `order_event_d`
@@ -1700,7 +1704,7 @@ ALTER TABLE `order_gift_d`
 -- 資料表的限制式 `order_gift_d_d`
 --
 ALTER TABLE `order_gift_d_d`
- ADD CONSTRAINT `order_gift_d_d_ibfk_1` FOREIGN KEY (`order_g_id`) REFERENCES `order_gift_d` (`order_g_id`),
+  ADD CONSTRAINT `order_gift_d_d_ibfk_1` FOREIGN KEY (`order_g_id`) REFERENCES `order_gift_d` (`order_g_id`),
   ADD CONSTRAINT `order_gift_d_d_ibfk_2` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`);
 
 --
@@ -1760,7 +1764,7 @@ ALTER TABLE `product_sake`
 -- 資料表的限制式 `restaurant_pictures`
 --
 ALTER TABLE `restaurant_pictures`
-  ADD CONSTRAINT `restaurant_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`);
+  ADD CONSTRAINT `restaurant_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `shipment_detail`
@@ -1773,7 +1777,7 @@ ALTER TABLE `shipment_detail`
 -- 資料表的限制式 `special_menu`
 --
 ALTER TABLE `special_menu`
-  ADD CONSTRAINT `special_menu_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`);
+  ADD CONSTRAINT `special_menu_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
