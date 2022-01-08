@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 08 日 22:17
+-- 產生時間： 2022 年 01 月 08 日 22:42
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -242,6 +242,30 @@ CREATE TABLE `favorite` (
   `member_id` int(8) NOT NULL COMMENT 'FK：member.member_id',
   `pro_id` int(11) NOT NULL COMMENT 'FK:清酒.商品編號'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `favorite`
+--
+
+INSERT INTO `favorite` (`fav_id`, `member_id`, `pro_id`) VALUES
+(1, 1, 1),
+(2, 1, 3),
+(3, 1, 6),
+(4, 1, 10),
+(5, 2, 6),
+(6, 2, 14),
+(7, 2, 22),
+(8, 2, 21),
+(9, 3, 7),
+(10, 3, 7),
+(11, 3, 27),
+(12, 4, 16),
+(13, 4, 8),
+(14, 4, 27),
+(15, 4, 17),
+(16, 5, 22),
+(17, 5, 26),
+(18, 5, 11);
 
 -- --------------------------------------------------------
 
@@ -1495,7 +1519,7 @@ ALTER TABLE `event_cat`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_a`
