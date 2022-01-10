@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 08 日 22:42
+-- 產生時間： 2022 年 01 月 10 日 11:56
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -131,9 +131,9 @@ CREATE TABLE `cart_sake` (
 
 INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`) VALUES
 ('S0000000001', 1, 12, 2),
-('S0000000002', 5, 18, 1),
+('S0000000002', 5, 4, 1),
 ('S0000000003', 4, 3, 1),
-('S0000000004', 6, 28, 3);
+('S0000000004', 6, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -256,7 +256,6 @@ INSERT INTO `favorite` (`fav_id`, `member_id`, `pro_id`) VALUES
 (6, 2, 14),
 (7, 2, 22),
 (8, 2, 21),
-(9, 3, 7),
 (10, 3, 7),
 (11, 3, 27),
 (12, 4, 16),
@@ -265,7 +264,9 @@ INSERT INTO `favorite` (`fav_id`, `member_id`, `pro_id`) VALUES
 (15, 4, 17),
 (16, 5, 22),
 (17, 5, 26),
-(18, 5, 11);
+(18, 5, 11),
+(19, 3, 3),
+(20, 3, 19);
 
 -- --------------------------------------------------------
 
@@ -1519,7 +1520,7 @@ ALTER TABLE `event_cat`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_a`
@@ -1683,7 +1684,7 @@ ALTER TABLE `cart_gift_d_d`
 --
 ALTER TABLE `cart_mark`
   ADD CONSTRAINT `cart_mark_ibfk_1` FOREIGN KEY (`cart_sake_id`) REFERENCES `cart_sake` (`cart_sake_id`),
-  ADD CONSTRAINT `cart_mark_ibfk_2` FOREIGN KEY (`mark_id`) REFERENCES `mark` (`mark_id`);
+  ADD CONSTRAINT `cart_mark_ibfk_2` FOREIGN KEY (`mark_id`) REFERENCES `mark` (`mark_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- 資料表的限制式 `cart_sake`
