@@ -361,7 +361,10 @@ INSERT INTO `guide_q` (`q_id`, `q_cate`, `q_seq`, `q_des`) VALUES
 (7, 'b', 1, '您今天的心情如何呢？'),
 (8, 'b', 2, '您喜歡晴天還是雨天？'),
 (9, 'b', 3, '請問您是什麼星座？');
-
+(10, 'a', 9, '請問您偏好什麼香氣？'),
+(11, 'b', 4, '請問您是貓派還是狗派？\r\n'),
+(12, 'a', 5, '請問您喜歡下列哪個顏色？'),
+(13, 'b', 6, '請問您的生肖是？\r\n');
 -- --------------------------------------------------------
 
 --
@@ -720,7 +723,8 @@ INSERT INTO `product_container` (`container_id`, `container_img`, `container_sha
 (3, '1-o.png', '1-s.jpg', '純錫製清酒瓶和木造清酒杯的套組'),
 (4, '2-o.png', '2-s.jpg', '純錫豬口杯'),
 (5, 'Null', 'Null', 'Null');
-
+(6, '6-o.png', '6-s.png', '藍色富士山風情杯'),
+(7, '7-o.jpg', '7-s.jpg', '日本津輕 青森夏風一壺兩杯');
 -- --------------------------------------------------------
 
 --
@@ -873,7 +877,9 @@ INSERT INTO `product_gift_d` (`gift_d_id`, `gift_id`, `gift_img`, `box_color`, `
 (7, 4, 'black-2.jpg', 'black', '[14,15,21,34,42,55]'),
 (8, 4, 'gold-2.jpg', 'gold', '[14,15,21,34,42,55]'),
 (9, 4, 'white-2.jpg', 'white', '[14,15,21,34,42,55]');
-
+(10, 2, 'black-4.jpg', 'black', '[5,15,20,25,30,35]'),
+(11, 3, 'red-4.jpg', 'red', '[5,15,20,25,30,35]'),
+(12, 2, 'gold-4.jpg', 'gold', '[5,15,20,25,30,35]');
 -- --------------------------------------------------------
 
 --
@@ -1572,7 +1578,7 @@ ALTER TABLE `guide_clia`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_q`
 --
 ALTER TABLE `guide_q`
-  MODIFY `q_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `q_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mark`
@@ -1620,7 +1626,7 @@ ALTER TABLE `payment_detail`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_container`
 --
 ALTER TABLE `product_container`
-  MODIFY `container_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `container_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_format`
@@ -1638,7 +1644,7 @@ ALTER TABLE `product_gift`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_gift_d`
 --
 ALTER TABLE `product_gift_d`
-  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_sake`
