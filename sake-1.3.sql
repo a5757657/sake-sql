@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 01 月 11 日 01:26
+-- 產生時間： 2022 年 01 月 11 日 09:48
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.26
 
@@ -266,7 +266,11 @@ INSERT INTO `favorite` (`fav_id`, `member_id`, `pro_id`) VALUES
 (17, 5, 26),
 (18, 5, 11),
 (19, 3, 3),
-(20, 3, 19);
+(20, 3, 19),
+(21, 4, 4),
+(22, 4, 8),
+(23, 4, 12),
+(24, 4, 20);
 
 -- --------------------------------------------------------
 
@@ -1520,7 +1524,7 @@ ALTER TABLE `event_cat`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `fav_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `guide_a`
