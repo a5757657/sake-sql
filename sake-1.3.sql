@@ -268,7 +268,6 @@ INSERT INTO `favorite` (`fav_id`, `member_id`, `pro_id`) VALUES
 (19, 3, 3),
 (20, 3, 19),
 (21, 4, 4),
-(22, 4, 8),
 (23, 4, 12),
 (24, 4, 20);
 
