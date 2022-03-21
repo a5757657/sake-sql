@@ -641,7 +641,7 @@ CREATE TABLE `order_main` (
 -- 傾印資料表的資料 `order_main`
 --
 
-INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_date`) VALUES
+INSERT INTO `order_main` (`order_id`, `member_id`, `order_name`, `order_mobile`, `order_email`, `type`, `used_code`, `order_date`) VALUES
 ('20220102001', 3, 'Willy', '0911033022', 'willy938@gmail.com', 'B', '', '2022-01-02 07:26:09'),
 ('20220104001', 1, 'Daniel', '0977777121', 'dan1@gmail.com', 'B', '', '2022-01-04 10:57:49'),
 ('20220105001', 5, 'Frank', '0933033011', 'franky1993@gmail.com', 'B', '', '2022-01-05 09:25:50'),
