@@ -66,10 +66,10 @@ CREATE TABLE `cart_gift` (
 --
 
 INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`, `box_color`) VALUES
-('G0000000001', 4, 1, 2, 'black'),
-('G0000000002', 6, 1, 3, 'white'),
-('G0000000003', 3, 2, 4, 'gold');
-
+('G0000000001', 6, 1, 2, 'black'),
+('G0000000002', 4, 1, 3, 'white'),
+('G0000000003', 3, 2, 4, 'gold'),
+('G0000000004', 4, 1, 4, 'white');
 -- --------------------------------------------------------
 
 --
@@ -90,7 +90,8 @@ INSERT INTO `cart_gift_d_d` (`cart_g_pro_id`, `cart_gift_id`, `pro_id`) VALUES
 (1, 'G0000000001', 13),
 (2, 'G0000000002', 23),
 (3, 'G0000000002', 24),
-(4, 'G0000000003', 14);
+(4, 'G0000000003', 14),
+(5, 'G0000000004', 62);
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,9 @@ CREATE TABLE `cart_mark` (
 
 INSERT INTO `cart_mark` (`cart_mark_id`, `mark_id`, `cart_sake_id`) VALUES
 (1, 1, 'S0000000002'),
-(2, 4, 'S0000000004');
+(3, 7, 'S0000000003'),
+(4, 9, 'S0000000004'),
+(5, 7, 'S0000000007');
 
 -- --------------------------------------------------------
 
@@ -132,9 +135,11 @@ CREATE TABLE `cart_sake` (
 INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`) VALUES
 ('S0000000001', 1, 12, 2),
 ('S0000000002', 5, 4, 1),
-('S0000000003', 4, 3, 1),
-('S0000000004', 6, 10, 3);
-
+('S0000000003', 4, 4, 1),
+('S0000000004', 4, 9, 2),
+('S0000000005', 4, 19, 1),
+('S0000000007', 4, 62, 1),
+('S0000000008', 4, 35, 1);
 -- --------------------------------------------------------
 
 --
@@ -386,7 +391,11 @@ INSERT INTO `mark` (`mark_id`, `member_id`, `pics`, `create_at`) VALUES
 (1, 5, '5-1.jpg', '2022-01-04 22:36:07'),
 (2, 5, '5-2.jpg', '2022-01-04 22:36:07'),
 (3, 1, '1-1.jpg', '2022-01-04 22:36:42'),
-(4, 4, '4-1.jpg', '2022-01-04 22:36:42');
+(4, 4, '4-1.jpg', '2022-01-04 22:36:42'),
+(7, 4, '4-2.jpg', '2022-03-12 22:51:48'),
+(8, 4, '4-3.jpg', '2022-03-12 22:51:48'),
+(9, 4, '4-4.jpg', '2022-03-12 22:51:51'),
+(10, 4, '4-5.jpg', '2022-03-12 22:51:51');
 
 -- --------------------------------------------------------
 
@@ -567,7 +576,7 @@ INSERT INTO `order_event_d` (`order_d_id`, `order_id`, `event_id`, `order_name`,
 --
 
 CREATE TABLE `order_gift_d` (
-  `order_g_id` varchar(14) NOT NULL COMMENT '日期＋g＋三碼編號 ex:20210401g001 自訂格式不勾選A_I',
+  `order_g_id` int(20) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
   `order_name` varchar(225) NOT NULL,
@@ -583,10 +592,11 @@ CREATE TABLE `order_gift_d` (
 -- 傾印資料表的資料 `order_gift_d`
 --
 
-INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
-('20220111g001', '20220111001', 2, 'Ann', '0940442232', 'ann1029@mail.com', 3820, '待出貨', 3, 'black'),
-('20220112g001', '20220112002', 1, 'Daniel', '0977777121', 'dan093@mail.com', 2980, '待出貨', 2, 'white'),
-('20220114g001', '20220114001', 1, 'Sam', '0970886668', 'sam1983@mail.com', 2280, '待出貨', 4, 'gold');
+INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
+(1, '20220111001', 2, 3820, '待出貨', 3, 'black'),
+(2, '20220112002', 1, 2980, '待出貨', 2, 'white'),
+(3, '20220114001', 1, 2280, '待出貨', 4, 'gold'),
+(5, '20220314002', 2, 6980, '待出貨', 2, 'black');
 
 -- --------------------------------------------------------
 
@@ -619,6 +629,9 @@ INSERT INTO `order_gift_d_d` (`order_g_pro_id`, `order_g_id`, `pro_id`) VALUES
 CREATE TABLE `order_main` (
   `order_id` varchar(11) NOT NULL COMMENT '日期＋當天編號三碼 ex:20210401001\r\n自訂格式不勾選A_I',
   `member_id` int(11) NOT NULL COMMENT 'FK：member.member_id',
+  `order_name` varchar(255) NOT NULL,
+  `order_mobile` varchar(20) NOT NULL,
+  `order_email` varchar(255) NOT NULL,
   `type` varchar(1) NOT NULL COMMENT 'S(sake), E(event), B(subscribe)',
   `used_code` varchar(10) NOT NULL COMMENT '對應discount.discount_code',
   `order_date` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
@@ -629,16 +642,18 @@ CREATE TABLE `order_main` (
 --
 
 INSERT INTO `order_main` (`order_id`, `member_id`, `type`, `used_code`, `order_date`) VALUES
-('20220102001', 3, 'B', '', '2022-01-02 07:26:09'),
-('20220104001', 1, 'B', '', '2022-01-04 10:57:49'),
-('20220105001', 5, 'B', '', '2022-01-05 09:25:50'),
-('20220105002', 4, 'E', '', '2022-01-05 10:20:14'),
-('20220108001', 6, 'E', '', '2022-01-08 18:20:14'),
-('20220110001', 4, 'S', 'LADYF90', '2022-01-10 11:36:00'),
-('20220111001', 4, 'G', '', '2022-01-11 09:31:59'),
-('20220112001', 1, 'S', '', '2022-01-12 09:57:00'),
-('20220112002', 1, 'G', '', '2022-01-12 09:30:46'),
-('20220114001', 6, 'G', '', '2022-01-14 09:30:46');
+('20220102001', 3, 'Willy', '0911033022', 'willy938@gmail.com', 'B', '', '2022-01-02 07:26:09'),
+('20220104001', 1, 'Daniel', '0977777121', 'dan1@gmail.com', 'B', '', '2022-01-04 10:57:49'),
+('20220105001', 5, 'Frank', '0933033011', 'franky1993@gmail.com', 'B', '', '2022-01-05 09:25:50'),
+('20220105002', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'E', '', '2022-01-05 10:20:14'),
+('20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'E', '', '2022-01-08 18:20:14'),
+('20220110001', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'S', 'LADYF90', '2022-01-10 11:36:00'),
+('20220111001', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'G', '', '2022-01-11 09:31:59'),
+('20220112001', 4, 'Daniel', '0977777121', 'dan093@mail.com', 'S', '', '2022-01-12 09:57:00'),
+('20220112002', 1, 'Daniel', '0977777121', 'dan093@mail.com', 'G', '', '2022-01-12 09:30:46'),
+('20220314001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'G', '', '2022-01-14 09:30:46'),
+('20220314002', 4, 'Ivy', '0932343889', 'ivy29@mail.com', 'S', '', '2022-03-14 14:21:56');
+
 
 -- --------------------------------------------------------
 
@@ -667,7 +682,7 @@ INSERT INTO `order_mark` (`order_mark_id`, `mark_id`, `order_d_id`) VALUES
 --
 
 CREATE TABLE `order_sake_d` (
-  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋s＋三碼編號 ＋兩碼編號ex:20210401s00101\r\n自定義名稱不勾選A_I',
+  `order_d_id` int(14) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `pro_id` int(11) NOT NULL COMMENT 'FK:清酒.商品編號',
   `order_quantity` int(2) NOT NULL,
@@ -682,11 +697,12 @@ CREATE TABLE `order_sake_d` (
 -- 傾印資料表的資料 `order_sake_d`
 --
 
-INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
-('20220110s00101', '20220110001', 42, 2, 'Ann', '0940442232', 'ann1029@mail.com', 2760, '待出貨'),
-('20220110s00102', '20220110001', 29, 1, 'Ann', '0940442232', 'ann1029@mail.com', 880, '待出貨'),
-('20220112s00101', '20220112001', 54, 3, 'Daniel', '0977777121', 'dan093@mail.com', 2640, '待出貨'),
-('20220112s00102', '20220112001', 28, 1, 'Daniel', '0977777121', 'dan093@mail.com', 1580, '待出貨');
+INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_d_price`, `order_state`) VALUES
+(1, '20220110001', 42, 2, 2760, '待出貨'),
+(2, '20220110001', 29, 1, 880, '待出貨'),
+(3, '20220112001', 54, 3, 2640, '待出貨'),
+(4, '20220112001', 28, 1, 1580, '待出貨');
+
 
 -- --------------------------------------------------------
 
@@ -728,6 +744,13 @@ CREATE TABLE `payment_detail` (
   `expire_date` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `payment_detail`
+--
+
+INSERT INTO `payment_detail` (`payment_detail_id`, `order_id`, `card_num`, `security_code`, `expire_date`) VALUES
+(1, '20220110001', 2147483647, 98, '11'),
+(2, '20220110001', 2147483647, 98, '11/28');
 -- --------------------------------------------------------
 
 --
@@ -1086,10 +1109,17 @@ CREATE TABLE `shipment_detail` (
   `tracking_num` int(12) NOT NULL,
   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
   `store_id` int(11) NOT NULL,
-  `shipment_address` varchar(100) NOT NULL COMMENT '門市地址、自填地址',
+  `receiver` varchar(255) NOT NULL,  `shipment_address` varchar(100) NOT NULL COMMENT '門市地址、自填地址',
   `shipment_note` varchar(50) NOT NULL COMMENT '訂單備註'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `shipment_detail`
+--
+
+INSERT INTO `shipment_detail` (`shipment_detail_id`, `order_id`, `tracking_num`, `shipment_method`, `store_id`, `receiver`, `shipment_address`, `shipment_note`) VALUES
+(1, '20220112001', 0, 'pickup', 2, 'John', '台北市大安區敦化南路1段196號', ''),
+(2, '20220112001', 0, 'delivery', 0, 'Jake', '台北市大安區復興南路一段390號2樓', '管理員代收');
 -- --------------------------------------------------------
 
 --
@@ -1564,13 +1594,13 @@ ALTER TABLE `cart_gift_d_d`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
 --
 ALTER TABLE `cart_mark`
-  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `discount`
 --
 ALTER TABLE `discount`
-  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `event`
@@ -1631,6 +1661,11 @@ ALTER TABLE `menu_pictures`
 --
 ALTER TABLE `news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d`
+--
+ALTER TABLE `order_gift_d`
+  MODIFY `order_g_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d_d`
@@ -1645,10 +1680,15 @@ ALTER TABLE `order_mark`
   MODIFY `order_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `order_sake_d`
+--
+ALTER TABLE `order_sake_d`
+  MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=9;
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
 --
 ALTER TABLE `payment_detail`
-  MODIFY `payment_detail_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_container`
@@ -1672,7 +1712,7 @@ ALTER TABLE `product_gift`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_gift_d`
 --
 ALTER TABLE `product_gift_d`
-  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `gift_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product_sake`
@@ -1696,7 +1736,7 @@ ALTER TABLE `restaurant_pictures`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `shipment_detail`
 --
 ALTER TABLE `shipment_detail`
-  MODIFY `shipment_detail_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `shipment_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `special_menu`
