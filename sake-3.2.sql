@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1
--- 產生時間： 2022-03-13 23:44:20
--- 伺服器版本： 10.4.22-MariaDB
--- PHP 版本： 7.4.26
+-- 主機： localhost
+-- 產生時間： 2022 年 03 月 23 日 08:51
+-- 伺服器版本： 10.4.21-MariaDB
+-- PHP 版本： 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫: `sake`
+-- 資料庫: `sake-test`
 --
 
 -- --------------------------------------------------------
@@ -70,6 +70,7 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 ('G0000000002', 4, 1, 3, 'white'),
 ('G0000000003', 3, 2, 4, 'gold'),
 ('G0000000004', 4, 1, 4, 'white');
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +141,7 @@ INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`)
 ('S0000000005', 4, 19, 1),
 ('S0000000007', 4, 62, 1),
 ('S0000000008', 4, 35, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -567,7 +569,9 @@ CREATE TABLE `order_event_d` (
 
 INSERT INTO `order_event_d` (`order_d_id`, `order_id`, `event_id`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
 ('20220105e001', '20220105002', 3, 'Ann', '0940442232', 'ann1029@mail.com', 2585, '即將到來'),
-('20220108e001', '20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 800, '即將到來');
+('20220105e008', '20220108001', 6, 'Ann', '0940442232', 'ann1029@mail.com', 2956, '已參加'),
+('20220108e001', '20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 800, '即將到來'),
+('20220228f007', '20220119901', 7, 'Ann', '0940442232', 'ann1029@mail.com', 4350, '已參加');
 
 -- --------------------------------------------------------
 
@@ -592,11 +596,11 @@ CREATE TABLE `order_gift_d` (
 -- 傾印資料表的資料 `order_gift_d`
 --
 
-INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
-(1, '20220111001', 2, 3820, '待出貨', 3, 'black'),
-(2, '20220112002', 1, 2980, '待出貨', 2, 'white'),
-(3, '20220114001', 1, 2280, '待出貨', 4, 'gold'),
-(5, '20220314002', 2, 6980, '待出貨', 2, 'black');
+INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
+(1, '20220111001', 2, '', '', '', 3820, '待出貨', 3, 'black'),
+(2, '20220112002', 1, '', '', '', 2980, '待出貨', 2, 'white'),
+(3, '20220114001', 1, '', '', '', 2280, '待出貨', 4, 'gold'),
+(5, '20220314002', 2, '', '', '', 6980, '待出貨', 2, 'black');
 
 -- --------------------------------------------------------
 
@@ -654,7 +658,6 @@ INSERT INTO `order_main` (`order_id`, `member_id`, `order_name`, `order_mobile`,
 ('20220314001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'G', '', '2022-01-14 09:30:46'),
 ('20220314002', 4, 'Ivy', '0932343889', 'ivy29@mail.com', 'S', '', '2022-03-14 14:21:56');
 
-
 -- --------------------------------------------------------
 
 --
@@ -697,12 +700,11 @@ CREATE TABLE `order_sake_d` (
 -- 傾印資料表的資料 `order_sake_d`
 --
 
-INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_d_price`, `order_state`) VALUES
-(1, '20220110001', 42, 2, 2760, '待出貨'),
-(2, '20220110001', 29, 1, 880, '待出貨'),
-(3, '20220112001', 54, 3, 2640, '待出貨'),
-(4, '20220112001', 28, 1, 1580, '待出貨');
-
+INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
+(1, '20220110001', 42, 2, '', '', '', 2760, '待出貨'),
+(2, '20220110001', 29, 1, '', '', '', 880, '待出貨'),
+(3, '20220112001', 54, 3, '', '', '', 2640, '待出貨'),
+(4, '20220112001', 28, 1, '', '', '', 1580, '待出貨');
 
 -- --------------------------------------------------------
 
@@ -728,7 +730,8 @@ CREATE TABLE `order_sub_d` (
 INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
 ('20220102b001', '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
 ('20220104b001', '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
-('20220105b001', '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中');
+('20220105b001', '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中'),
+('20220105b003', '20220119901', 3, 2, '0933033011', 'Ann123@mail.com', 9180, '進行中');
 
 -- --------------------------------------------------------
 
@@ -749,8 +752,9 @@ CREATE TABLE `payment_detail` (
 --
 
 INSERT INTO `payment_detail` (`payment_detail_id`, `order_id`, `card_num`, `security_code`, `expire_date`) VALUES
-(1, '20220110001', 2147483647, 98, '11'),
-(2, '20220110001', 2147483647, 98, '11/28');
+(1, '20220110001', 2147483647, 98, 11),
+(2, '20220110001', 2147483647, 98, 11);
+
 -- --------------------------------------------------------
 
 --
@@ -1109,7 +1113,8 @@ CREATE TABLE `shipment_detail` (
   `tracking_num` int(12) NOT NULL,
   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
   `store_id` int(11) NOT NULL,
-  `receiver` varchar(255) NOT NULL,  `shipment_address` varchar(100) NOT NULL COMMENT '門市地址、自填地址',
+  `receiver` varchar(255) NOT NULL,
+  `shipment_address` varchar(100) NOT NULL COMMENT '門市地址、自填地址',
   `shipment_note` varchar(50) NOT NULL COMMENT '訂單備註'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1120,6 +1125,7 @@ CREATE TABLE `shipment_detail` (
 INSERT INTO `shipment_detail` (`shipment_detail_id`, `order_id`, `tracking_num`, `shipment_method`, `store_id`, `receiver`, `shipment_address`, `shipment_note`) VALUES
 (1, '20220112001', 0, 'pickup', 2, 'John', '台北市大安區敦化南路1段196號', ''),
 (2, '20220112001', 0, 'delivery', 0, 'Jake', '台北市大安區復興南路一段390號2樓', '管理員代收');
+
 -- --------------------------------------------------------
 
 --
@@ -1291,9 +1297,10 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (36, 'dffafaff@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-20 18:35:14'),
 (37, 'randy123@hotmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-20 18:36:23'),
 (38, 'adsdfa@gmail.com', '$2a$10$BVA6BledxHqZjqTsG9LmSexUHdkpjC34sQYUPAi7ADYT7Qnk880vm', '2022-02-20 18:37:21'),
-(39, 'wfwfwewdfweddfa@gmail.com', '$2a$10$fuZAeXpbrl1YNp65JHIPZetsIllkX.QKHYSGxuh8huRzzlLQ1JVZ.', '2022-02-20 18:38:42'),
+(39, 'wfwfwewdfweddfa@gmai', '$2a$10$fuZAeXpbrl1YNp65JHIPZetsIllkX.QKHYSGxuh8huRzzlLQ1JVZ.', '2022-02-20 18:38:42'),
 (40, 'qweqsada@gmail.com', '$2a$10$6h5HNtfpL1biVAaxv5M0/Or2FbRsBDN.bBW0CSFgIOvImTglYb7/6', '2022-02-20 18:39:55'),
 (42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41');
+
 --
 -- 已傾印資料表的索引
 --
@@ -1588,19 +1595,19 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  MODIFY `cart_g_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_g_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
 --
 ALTER TABLE `cart_mark`
-  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `discount`
 --
 ALTER TABLE `discount`
-  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `event`
@@ -1642,13 +1649,13 @@ ALTER TABLE `guide_q`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mark`
 --
 ALTER TABLE `mark`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu_pictures`
@@ -1661,6 +1668,7 @@ ALTER TABLE `menu_pictures`
 --
 ALTER TABLE `news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d`
 --
@@ -1684,6 +1692,7 @@ ALTER TABLE `order_mark`
 --
 ALTER TABLE `order_sake_d`
   MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=9;
+
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
 --
@@ -1766,7 +1775,7 @@ ALTER TABLE `sub_time`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- 已傾印資料表的限制式
@@ -1781,162 +1790,11 @@ ALTER TABLE `cart_gift`
   ADD CONSTRAINT `cart_gift_ibfk_3` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
 
 --
--- 資料表的限制式 `cart_gift_d_d`
---
-ALTER TABLE `cart_gift_d_d`
-  ADD CONSTRAINT `cart_gift_d_d_ibfk_1` FOREIGN KEY (`cart_gift_id`) REFERENCES `cart_gift` (`cart_gift_id`),
-  ADD CONSTRAINT `cart_gift_d_d_ibfk_2` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`);
-
---
 -- 資料表的限制式 `cart_mark`
 --
 ALTER TABLE `cart_mark`
   ADD CONSTRAINT `cart_mark_ibfk_1` FOREIGN KEY (`cart_sake_id`) REFERENCES `cart_sake` (`cart_sake_id`),
   ADD CONSTRAINT `cart_mark_ibfk_2` FOREIGN KEY (`mark_id`) REFERENCES `mark` (`mark_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- 資料表的限制式 `cart_sake`
---
-ALTER TABLE `cart_sake`
-  ADD CONSTRAINT `cart_sake_ibfk_1` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`),
-  ADD CONSTRAINT `cart_sake_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
-
---
--- 資料表的限制式 `event`
---
-ALTER TABLE `event`
-  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`event_cat_id`) REFERENCES `event_cat` (`event_cat_id`);
-
---
--- 資料表的限制式 `favorite`
---
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`);
-
---
--- 資料表的限制式 `guide_a`
---
-ALTER TABLE `guide_a`
-  ADD CONSTRAINT `guide_a_ibfk_1` FOREIGN KEY (`q_id`) REFERENCES `guide_q` (`q_id`);
-
---
--- 資料表的限制式 `guide_clia`
---
-ALTER TABLE `guide_clia`
-  ADD CONSTRAINT `guide_clia_ibfk_1` FOREIGN KEY (`a_no`) REFERENCES `guide_a` (`a_no`),
-  ADD CONSTRAINT `guide_clia_ibfk_2` FOREIGN KEY (`q_id`) REFERENCES `guide_q` (`q_id`);
-
---
--- 資料表的限制式 `mark`
---
-ALTER TABLE `mark`
-  ADD CONSTRAINT `mark_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
-
---
--- 資料表的限制式 `member`
---
-ALTER TABLE `member`
-  ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
-
---
--- 資料表的限制式 `menu_pictures`
---
-ALTER TABLE `menu_pictures`
-  ADD CONSTRAINT `menu_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- 資料表的限制式 `order_event_d`
---
-ALTER TABLE `order_event_d`
-  ADD CONSTRAINT `order_event_d_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`),
-  ADD CONSTRAINT `order_event_d_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`);
-
---
--- 資料表的限制式 `order_gift_d`
---
-ALTER TABLE `order_gift_d`
-  ADD CONSTRAINT `order_gift_d_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`),
-  ADD CONSTRAINT `order_gift_d_ibfk_2` FOREIGN KEY (`box_color`) REFERENCES `product_gift_d` (`box_color`),
-  ADD CONSTRAINT `order_gift_d_ibfk_3` FOREIGN KEY (`gift_id`) REFERENCES `product_gift` (`gift_id`);
-
---
--- 資料表的限制式 `order_gift_d_d`
---
-ALTER TABLE `order_gift_d_d`
-  ADD CONSTRAINT `order_gift_d_d_ibfk_1` FOREIGN KEY (`order_g_id`) REFERENCES `order_gift_d` (`order_g_id`),
-  ADD CONSTRAINT `order_gift_d_d_ibfk_2` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`);
-
---
--- 資料表的限制式 `order_main`
---
-ALTER TABLE `order_main`
-  ADD CONSTRAINT `order_main_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
-
---
--- 資料表的限制式 `order_mark`
---
-ALTER TABLE `order_mark`
-  ADD CONSTRAINT `order_mark_ibfk_1` FOREIGN KEY (`mark_id`) REFERENCES `mark` (`mark_id`),
-  ADD CONSTRAINT `order_mark_ibfk_2` FOREIGN KEY (`order_d_id`) REFERENCES `order_sake_d` (`order_d_id`);
-
---
--- 資料表的限制式 `order_sake_d`
---
-ALTER TABLE `order_sake_d`
-  ADD CONSTRAINT `order_sake_d_ibfk_1` FOREIGN KEY (`pro_id`) REFERENCES `product_sake` (`pro_id`),
-  ADD CONSTRAINT `order_sake_d_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`);
-
---
--- 資料表的限制式 `order_sub_d`
---
-ALTER TABLE `order_sub_d`
-  ADD CONSTRAINT `order_sub_d_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `sub_plan` (`sub_id`),
-  ADD CONSTRAINT `order_sub_d_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`),
-  ADD CONSTRAINT `order_sub_d_ibfk_4` FOREIGN KEY (`subtime_id`) REFERENCES `sub_time` (`subtime_id`);
-
---
--- 資料表的限制式 `payment_detail`
---
-ALTER TABLE `payment_detail`
-  ADD CONSTRAINT `payment_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`);
-
---
--- 資料表的限制式 `product_format`
---
-ALTER TABLE `product_format`
-  ADD CONSTRAINT `product_format_ibfk_1` FOREIGN KEY (`pro_gift`) REFERENCES `product_gift` (`pro_gift`),
-  ADD CONSTRAINT `product_format_ibfk_2` FOREIGN KEY (`container_id`) REFERENCES `product_container` (`container_id`);
-
---
--- 資料表的限制式 `product_gift_d`
---
-ALTER TABLE `product_gift_d`
-  ADD CONSTRAINT `product_gift_d_ibfk_1` FOREIGN KEY (`gift_id`) REFERENCES `product_gift` (`gift_id`);
-
---
--- 資料表的限制式 `product_sake`
---
-ALTER TABLE `product_sake`
-  ADD CONSTRAINT `product_sake_ibfk_1` FOREIGN KEY (`format_id`) REFERENCES `product_format` (`format_id`);
-
---
--- 資料表的限制式 `restaurant_pictures`
---
-ALTER TABLE `restaurant_pictures`
-  ADD CONSTRAINT `restaurant_pictures_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- 資料表的限制式 `shipment_detail`
---
-ALTER TABLE `shipment_detail`
-  ADD CONSTRAINT `shipment_detail_ibfk_1` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`),
-  ADD CONSTRAINT `shipment_detail_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_main` (`order_id`);
-
---
--- 資料表的限制式 `special_menu`
---
-ALTER TABLE `special_menu`
-  ADD CONSTRAINT `special_menu_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
