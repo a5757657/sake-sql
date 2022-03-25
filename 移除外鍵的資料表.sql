@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 03 月 22 日 08:48
+-- 產生時間： 2022 年 03 月 25 日 08:48
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.27
 
@@ -78,7 +78,7 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 --
 
 CREATE TABLE `cart_gift_d_d` (
-  `cart_g_pro_id` int(11) NOT NULL,
+   `cart_g_pro_id` int(11) NOT NULL,
   `cart_gift_id` varchar(14) NOT NULL,
   `pro_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -112,9 +112,9 @@ CREATE TABLE `cart_mark` (
 
 INSERT INTO `cart_mark` (`cart_mark_id`, `mark_id`, `cart_sake_id`) VALUES
 (1, 1, 'S0000000002'),
-(3, 7, 'S0000000003'),
-(4, 9, 'S0000000004'),
-(5, 7, 'S0000000007');
+(3, 4, 'S0000000003'),
+(4, 5, 'S0000000004'),
+(5, 6, 'S0000000007'),
 
 -- --------------------------------------------------------
 
@@ -381,6 +381,7 @@ INSERT INTO `guide_q` (`q_id`, `q_cate`, `q_seq`, `q_des`) VALUES
 CREATE TABLE `mark` (
   `mark_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
+   `mark_name` varchar(20) NOT NULL,
   `pics` varchar(255) NOT NULL,
   `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -389,15 +390,15 @@ CREATE TABLE `mark` (
 -- 傾印資料表的資料 `mark`
 --
 
-INSERT INTO `mark` (`mark_id`, `member_id`, `pics`, `create_at`) VALUES
-(1, 5, '5-1.jpg', '2022-01-04 22:36:07'),
-(2, 5, '5-2.jpg', '2022-01-04 22:36:07'),
-(3, 1, '1-1.jpg', '2022-01-04 22:36:42'),
-(4, 4, '4-1.png', '2022-01-04 22:36:42'),
-(7, 4, '4-2.png', '2022-03-12 22:51:48'),
-(8, 4, '4-3.jpg', '2022-03-12 22:51:48'),
-(9, 4, '4-4.jpg', '2022-03-12 22:51:51'),
-(10, 4, '4-5.jpg', '2022-03-12 22:51:51');
+INSERT INTO `mark` (`mark_id`, `member_id`, `mark_name`, `pics`, `create_at`) VALUES
+(1, 5, '酒標 A', '5-1.jpg', '2022-01-04 22:36:07'),
+(2, 5, '酒標 B', '5-2.jpg', '2022-01-04 22:36:07'),
+(3, 1, '酒標 1', '1-1.jpg', '2022-01-04 22:36:42'),
+(4, 4, '我的酒標 A', '4-1.jpg', '2022-01-04 22:36:42'),
+(5, 4, '我的酒標 B', '4-2.jpg', '2022-03-12 22:51:48'),
+(6, 4, '我的酒標 C', '4-3.jpg', '2022-03-12 22:51:48'),
+(7, 4, '我的酒標 D', '4-4.jpg', '2022-03-12 22:51:51'),
+(8, 4, '我的酒標 E', '4-5.jpg', '2022-03-12 22:51:51');
 
 -- --------------------------------------------------------
 
@@ -583,9 +584,6 @@ CREATE TABLE `order_gift_d` (
   `order_g_id` int(20) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
-  `order_name` varchar(225) NOT NULL,
-  `order_mobile` varchar(20) NOT NULL,
-  `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL,
   `order_state` varchar(10) NOT NULL,
   `gift_id` int(11) NOT NULL,
@@ -596,11 +594,11 @@ CREATE TABLE `order_gift_d` (
 -- 傾印資料表的資料 `order_gift_d`
 --
 
-INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
-(1, '20220111001', 2, '', '', '', 3820, '待出貨', 3, 'black'),
-(2, '20220112002', 1, '', '', '', 2980, '待出貨', 2, 'white'),
-(3, '20220114001', 1, '', '', '', 2280, '待出貨', 4, 'gold'),
-(5, '20220314002', 2, '', '', '', 6980, '待出貨', 2, 'black');
+INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
+(1, '20220110001', 2, 3820, '待出貨', 3, 'black'),
+(2, '20220112001', 1, 2980, '待出貨', 2, 'white'),
+(3, '20220114001', 1, 2280, '待出貨', 4, 'gold'),
+(5, '20220314001', 2, 6980, '待出貨', 2, 'black');
 
 -- --------------------------------------------------------
 
@@ -619,10 +617,10 @@ CREATE TABLE `order_gift_d_d` (
 --
 
 INSERT INTO `order_gift_d_d` (`order_g_pro_id`, `order_g_id`, `pro_id`) VALUES
-(1, '20220111g001', 17),
-(2, '20220111g001', 8),
-(3, '20220112g001', 13),
-(4, '20220114g001', 15);
+(1, '1', 17),
+(2, '1', 8),
+(3, '2', 13),
+(4, '3', 15);
 
 -- --------------------------------------------------------
 
@@ -652,11 +650,8 @@ INSERT INTO `order_main` (`order_id`, `member_id`, `order_name`, `order_mobile`,
 ('20220105002', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'E', '', '2022-01-05 10:20:14'),
 ('20220108001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'E', '', '2022-01-08 18:20:14'),
 ('20220110001', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'S', 'LADYF90', '2022-01-10 11:36:00'),
-('20220111001', 4, 'Ann', '0940442232', 'ann1029@mail.com', 'G', '', '2022-01-11 09:31:59'),
-('20220112001', 4, 'Daniel', '0977777121', 'dan093@mail.com', 'S', '', '2022-01-12 09:57:00'),
-('20220112002', 1, 'Daniel', '0977777121', 'dan093@mail.com', 'G', '', '2022-01-12 09:30:46'),
-('20220314001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'G', '', '2022-01-14 09:30:46'),
-('20220314002', 4, 'Ivy', '0932343889', 'ivy29@mail.com', 'S', '', '2022-03-14 14:21:56');
+('20220112001', 1, 'Daniel', '0977777121', 'dan093@mail.com', 'S', '', '2022-01-12 09:57:00'),
+('20220314001', 6, 'Sam', '0970886668', 'sam1983@mail.com', 'S', '', '2022-01-14 09:30:46');
 
 -- --------------------------------------------------------
 
@@ -675,8 +670,10 @@ CREATE TABLE `order_mark` (
 --
 
 INSERT INTO `order_mark` (`order_mark_id`, `mark_id`, `order_d_id`) VALUES
-(1, 4, '20220110s00102'),
-(2, 3, '20220112s00102');
+(1, 4, '2'),
+(2, 3, '3'),
+(5, 7, '23'),
+(6, 7, '25');
 
 -- --------------------------------------------------------
 
@@ -689,9 +686,6 @@ CREATE TABLE `order_sake_d` (
   `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `pro_id` int(11) NOT NULL COMMENT 'FK:清酒.商品編號',
   `order_quantity` int(2) NOT NULL,
-  `order_name` varchar(225) NOT NULL,
-  `order_mobile` varchar(20) NOT NULL,
-  `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL COMMENT '撈清酒.價格*數量',
   `order_state` varchar(10) NOT NULL COMMENT '待出貨、已出貨、已取消'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -700,11 +694,11 @@ CREATE TABLE `order_sake_d` (
 -- 傾印資料表的資料 `order_sake_d`
 --
 
-INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_name`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
-(1, '20220110001', 42, 2, '', '', '', 2760, '待出貨'),
-(2, '20220110001', 29, 1, '', '', '', 880, '待出貨'),
-(3, '20220112001', 54, 3, '', '', '', 2640, '待出貨'),
-(4, '20220112001', 28, 1, '', '', '', 1580, '待出貨');
+INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`, `order_d_price`, `order_state`) VALUES
+(1, '20220110001', 42, 2, 2760, '待出貨'),
+(2, '20220110001', 10, 1, 880, '待出貨'),
+(3, '20220112001', 5, 3, 2640, '待出貨'),
+(4, '20220112001', 28, 1, 1580, '待出貨');
 
 -- --------------------------------------------------------
 
@@ -751,8 +745,7 @@ CREATE TABLE `payment_detail` (
 --
 
 INSERT INTO `payment_detail` (`payment_detail_id`, `order_id`, `card_num`, `security_code`, `expire_date`) VALUES
-(1, '20220110001', 2147483647, 98, 11),
-(2, '20220110001', 2147483647, 98, 11);
+(1, '20220110001', 2147483647, 98, 11);
 
 -- --------------------------------------------------------
 
@@ -1110,9 +1103,11 @@ CREATE TABLE `shipment_detail` (
   `shipment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL,
   `tracking_num` int(12) NOT NULL,
-  `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
+   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
+  `ship_fee` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `receiver` varchar(255) NOT NULL,
+  `receiver_mobile` varchar(20) NOT NULL,
   `shipment_address` varchar(100) NOT NULL COMMENT '門市地址、自填地址',
   `shipment_note` varchar(50) NOT NULL COMMENT '訂單備註'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1121,9 +1116,9 @@ CREATE TABLE `shipment_detail` (
 -- 傾印資料表的資料 `shipment_detail`
 --
 
-INSERT INTO `shipment_detail` (`shipment_detail_id`, `order_id`, `tracking_num`, `shipment_method`, `store_id`, `receiver`, `shipment_address`, `shipment_note`) VALUES
-(1, '20220112001', 0, 'pickup', 2, 'John', '台北市大安區敦化南路1段196號', ''),
-(2, '20220112001', 0, 'delivery', 0, 'Jake', '台北市大安區復興南路一段390號2樓', '管理員代收');
+INSERT INTO `shipment_detail` (`shipment_detail_id`, `order_id`, `tracking_num`, `shipment_method`, `ship_fee`, `store_id`, `receiver`, `receiver_mobile`, `shipment_address`, `shipment_note`) VALUES
+(1, '20220112001', 0, 'pickup', 0, 2, 'John', '0939282173', '台北市大安區敦化南路1段196號', ''),
+(2, '20220110001', 0, 'delivery', 60, 0, 'Jake', '0987133645', '台北市大安區復興南路一段390號2樓', '管理員代收');
 
 -- --------------------------------------------------------
 
@@ -1324,7 +1319,7 @@ ALTER TABLE `cart_gift`
 -- 資料表索引 `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  ADD PRIMARY KEY (`cart_g_pro_id`),
+  ADD PRIMARY KEY (`cart_g_d_id`),
   ADD KEY `cart_gift_id` (`cart_gift_id`),
   ADD KEY `pro_id` (`pro_id`);
 
