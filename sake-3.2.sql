@@ -78,7 +78,7 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 --
 
 CREATE TABLE `cart_gift_d_d` (
-  `cart_g_pro_id` int(11) NOT NULL,
+  `cart_g_d_id` int(11) NOT NULL,
   `cart_gift_id` varchar(14) NOT NULL,
   `pro_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -87,7 +87,7 @@ CREATE TABLE `cart_gift_d_d` (
 -- 傾印資料表的資料 `cart_gift_d_d`
 --
 
-INSERT INTO `cart_gift_d_d` (`cart_g_pro_id`, `cart_gift_id`, `pro_id`) VALUES
+INSERT INTO `cart_gift_d_d` (`cart_g_d_id`, `cart_gift_id`, `pro_id`) VALUES
 (1, 'G0000000001', 13),
 (2, 'G0000000002', 23),
 (3, 'G0000000002', 24),
@@ -1589,7 +1589,7 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  MODIFY `cart_g_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_g_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
