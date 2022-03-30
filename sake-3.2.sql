@@ -775,7 +775,7 @@ INSERT INTO `product_container` (`container_id`, `container_img`, `container_sha
 (2, '3-o.png', '3-s.png', '津輕金箔玻璃清酒杯'),
 (3, '1-o.png', '1-s.png', '純錫製清酒瓶和木造清酒杯的套組'),
 (4, '2-o.png', '2-s.png', '純錫豬口杯'),
-(5, 'Null', 'Null', 'Null'),
+(5, 'Null', 'Null', 'Null');
 
 -- --------------------------------------------------------
 
@@ -914,7 +914,7 @@ INSERT INTO `product_gift_d` (`gift_d_id`, `gift_id`, `gift_img`, `box_color`, `
 (6, 3, 'white-2.png', 'white', '[8,17,18,23,24,25]'),
 (7, 4, 'black-3.png', 'black', '[14,15,21,34,42,55]'),
 (8, 4, 'gold-3.png', 'gold', '[14,15,21,34,42,55]'),
-(9, 4, 'white-3.png', 'white', '[14,15,21,34,42,55]'),
+(9, 4, 'white-3.png', 'white', '[14,15,21,34,42,55]');
 
 -- --------------------------------------------------------
 
