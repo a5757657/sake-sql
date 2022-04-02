@@ -408,11 +408,11 @@ INSERT INTO `mark` (`mark_id`, `member_id`, `mark_name`, `pics`, `create_at`) VA
 CREATE TABLE `member` (
   `member_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `member_name` varchar(100) NOT NULL,
-  `member_bir` date NOT NULL,
-  `member_mob` varchar(50) NOT NULL,
-  `member_addr` varchar(100) NOT NULL,
-  `member_level` varchar(20) NOT NULL
+  `member_name` varchar(100) DEFAULT NULL,
+  `member_bir` date DEFAULT NULL,
+  `member_mob` varchar(50) DEFAULT NULL,
+  `member_addr` varchar(100) DEFAULT NULL,
+  `member_level` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -457,8 +457,8 @@ INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `memb
 (38, 38, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (39, 39, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (40, 40, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
-(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', '');
-
+(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
+(122, 122, NULL, NULL, NULL, NULL, NULL);
 -- --------------------------------------------------------
 
 --
@@ -1259,8 +1259,8 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (1, 'test001@test001', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
 (2, 'test002@test002', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
 (3, 'test003@test003', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
-(4, 'test004@test004', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
-(5, 'test005@test005', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
+(4, 'test004@test004', '$2a$10$S/M8sQMkJ6TUo2E.5CyPqu0hj84fELkZOPBCUmOnQfQgttTc0YC4m', '2022-01-02'),
+(5, 'test005@test005', '$2a$10$H46OxPEq92nvX/AA4W6sgO/x4xIIttw0U0Pc5AYnwu.9MDIeVjAcu', '2022-01-02'),
 (6, 'test006@test006', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
 (7, 'test007@test007', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
 (8, 'test008@test008', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-01-02'),
@@ -1293,8 +1293,66 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (38, 'adsdfa@gmail.com', '$2a$10$BVA6BledxHqZjqTsG9LmSexUHdkpjC34sQYUPAi7ADYT7Qnk880vm', '2022-02-20 18:37:21'),
 (39, 'wfwfwewdfweddfa@gmai', '$2a$10$fuZAeXpbrl1YNp65JHIPZetsIllkX.QKHYSGxuh8huRzzlLQ1JVZ.', '2022-02-20 18:38:42'),
 (40, 'qweqsada@gmail.com', '$2a$10$6h5HNtfpL1biVAaxv5M0/Or2FbRsBDN.bBW0CSFgIOvImTglYb7/6', '2022-02-20 18:39:55'),
-(42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41');
+(42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41'),
+(85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48'),
+(122, 'cv0340652@gmail.com', '$2a$10$DttF9ZlVqeZhzZb5C.K5QeLlqO4U69jcwGF1C89JLoDHmqZNLs3Sy', '2022-04-02 19:36:15');
 
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `verify`
+--
+
+CREATE TABLE `verify` (
+  `user_id` int(11) NOT NULL,
+  `verify_code` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `verify`
+--
+
+INSERT INTO `verify` (`user_id`, `verify_code`) VALUES
+(1, '633505'),
+(2, '877890'),
+(3, '988932'),
+(4, '810991'),
+(5, '588159'),
+(6, '507820'),
+(7, '774625'),
+(8, '849662'),
+(9, '924434'),
+(10, '573183'),
+(11, '592614'),
+(12, '743519'),
+(13, '939751'),
+(14, '968201'),
+(15, '521750'),
+(16, '704148'),
+(17, '955488'),
+(18, '664995'),
+(19, '958510'),
+(20, '797563'),
+(21, '612288'),
+(22, '668749'),
+(23, '506881'),
+(24, '528157'),
+(25, '620140'),
+(26, '516231'),
+(27, '720734'),
+(28, '763046'),
+(30, '900871'),
+(31, '965481'),
+(32, '624792'),
+(34, '679624'),
+(36, '771931'),
+(37, '763212'),
+(38, '790873'),
+(39, '554976'),
+(40, '727518'),
+(42, '999084'),
+(85, '665229'),
+(122, '617863');
 --
 -- 已傾印資料表的索引
 --
@@ -1574,7 +1632,12 @@ ALTER TABLE `sub_time`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_account` (`user_account`);
-
+--
+-- 資料表索引 `verify`
+--
+ALTER TABLE `verify`
+  ADD PRIMARY KEY (`verify_code`),
+  ADD KEY `user_id` (`user_id`);
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
@@ -1649,7 +1712,7 @@ ALTER TABLE `mark`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu_pictures`
@@ -1769,7 +1832,7 @@ ALTER TABLE `sub_time`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- 已傾印資料表的限制式
@@ -1789,6 +1852,12 @@ ALTER TABLE `cart_gift`
 ALTER TABLE `cart_mark`
   ADD CONSTRAINT `cart_mark_ibfk_1` FOREIGN KEY (`cart_sake_id`) REFERENCES `cart_sake` (`cart_sake_id`),
   ADD CONSTRAINT `cart_mark_ibfk_2` FOREIGN KEY (`mark_id`) REFERENCES `mark` (`mark_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- 資料表的限制式 `verify`
+--
+ALTER TABLE `verify`
+  ADD CONSTRAINT `verify_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
