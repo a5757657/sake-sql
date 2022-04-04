@@ -69,7 +69,8 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 ('G0000000001', 6, 1, 2, 'black'),
 ('G0000000002', 4, 1, 3, 'white'),
 ('G0000000003', 3, 2, 4, 'gold'),
-('G0000000004', 4, 1, 4, 'white');
+('G0000000004', 4, 1, 4, 'white'),
+('G0000000005', 4, 1, 2, 'black');
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,8 @@ INSERT INTO `cart_gift_d_d` (`cart_g_d_id`, `cart_gift_id`, `pro_id`) VALUES
 (2, 'G0000000002', 23),
 (3, 'G0000000002', 24),
 (4, 'G0000000003', 14),
-(5, 'G0000000004', 62);
+(5, 'G0000000004', 55),
+(6, 'G0000000005', 13);
 
 -- --------------------------------------------------------
 
@@ -113,8 +115,7 @@ CREATE TABLE `cart_mark` (
 INSERT INTO `cart_mark` (`cart_mark_id`, `mark_id`, `cart_sake_id`) VALUES
 (1, 1, 'S0000000002'),
 (3, 4, 'S0000000003'),
-(4, 5, 'S0000000004'),
-(5, 6, 'S0000000007');
+(4, 5, 'S0000000004');
 
 -- --------------------------------------------------------
 
@@ -134,13 +135,14 @@ CREATE TABLE `cart_sake` (
 --
 
 INSERT INTO `cart_sake` (`cart_sake_id`, `member_id`, `pro_id`, `cart_quantity`) VALUES
-('S0000000001', 1, 12, 2),
+('S0000000001', 1, 12, 1),
 ('S0000000002', 5, 4, 1),
-('S0000000003', 4, 4, 1),
+('S0000000003', 4, 4, 3),
 ('S0000000004', 4, 9, 2),
-('S0000000005', 4, 19, 1),
-('S0000000007', 4, 62, 1),
-('S0000000008', 4, 35, 1);
+('S0000000005', 4, 18, 2),
+('S0000000007', 4, 50, 1),
+('S0000000008', 4, 5, 1),
+('S0000000009', 4, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -167,7 +169,7 @@ CREATE TABLE `discount` (
 INSERT INTO `discount` (`discount_id`, `discount_code`, `discount_info`, `perscent`, `discount_time_start`, `discount_time_end`, `active`, `create_at`, `modified_at`) VALUES
 (1, '2021XMAS', '2021聖誕節優惠', 0.85, '2021-12-20 10:00:00', '2021-12-31 10:00:00', 0, '2021-12-01 10:00:00', '2021-12-01 10:00:00'),
 (2, '2022NEWYEAR', '2022新年優惠', 0.9, '2021-12-31 10:00:00', '2022-01-02 10:00:00', 0, '2022-01-04 10:55:28', '2022-01-04 10:55:28'),
-(3, '2022PEACE', '2022二二八', 0.82, '2022-02-27 10:00:00', '2022-02-28 23:00:00', 0, '2022-01-04 10:55:28', '2022-01-04 10:55:28'),
+(3, '2022LOVE', '2022情人節', 0.82, '2022-02-27 10:00:00', '2022-02-28 23:00:00', 0, '2022-01-04 10:55:28', '2022-01-04 10:55:28'),
 (4, 'LADYF90', '好味小姐優惠', 0.9, '2022-01-01 11:00:00', '2022-01-31 11:00:00', 1, '2022-01-04 11:00:15', '2022-01-04 11:00:15'),
 (5, 'FRED87', 'Fred專屬優惠', 0.87, '2022-02-01 10:00:00', '2022-02-25 10:00:00', 0, '2022-01-04 11:00:15', '2022-01-04 11:00:15'),
 (6, 'SHINDERLIN', '林新德專屬折扣', 0.9, '2022-01-01 10:00:00', '2022-04-30 10:00:00', 1, '2022-01-04 11:04:45', '2022-01-04 11:04:45');
@@ -457,10 +459,8 @@ INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `memb
 (38, 38, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (39, 39, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (40, 40, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
-(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', '')
-,
+(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (122, 122, NULL, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -597,9 +597,7 @@ CREATE TABLE `order_gift_d` (
 
 INSERT INTO `order_gift_d` (`order_g_id`, `order_id`, `order_quantity`, `order_d_price`, `order_state`, `gift_id`, `box_color`) VALUES
 (1, '20220110001', 2, 3820, '待出貨', 3, 'black'),
-(2, '20220112001', 1, 2980, '待出貨', 2, 'white'),
-(3, '20220114001', 1, 2280, '待出貨', 4, 'gold'),
-(5, '20220314001', 2, 6980, '待出貨', 2, 'black');
+(2, '20220112001', 1, 2980, '待出貨', 2, 'white');
 
 -- --------------------------------------------------------
 
@@ -620,8 +618,7 @@ CREATE TABLE `order_gift_d_d` (
 INSERT INTO `order_gift_d_d` (`order_g_pro_id`, `order_g_id`, `pro_id`) VALUES
 (1, '1', 17),
 (2, '1', 8),
-(3, '2', 13),
-(4, '3', 15);
+(3, '2', 13);
 
 -- --------------------------------------------------------
 
@@ -672,9 +669,7 @@ CREATE TABLE `order_mark` (
 
 INSERT INTO `order_mark` (`order_mark_id`, `mark_id`, `order_d_id`) VALUES
 (1, 4, '2'),
-(2, 3, '3'),
-(5, 7, '23'),
-(6, 7, '25');
+(2, 3, '3');
 
 -- --------------------------------------------------------
 
@@ -708,7 +703,7 @@ INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`
 --
 
 CREATE TABLE `order_sub_d` (
-  `order_d_id` varchar(14) NOT NULL COMMENT '日期＋b＋編號ex:20210401b001\r\n自訂名稱不勾選A_I',
+  `order_d_id` int(14) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
   `sub_id` int(5) NOT NULL,
   `subtime_id` int(11) NOT NULL,
@@ -723,10 +718,11 @@ CREATE TABLE `order_sub_d` (
 --
 
 INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
-('20220102b001', '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
-('20220104b001', '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
-('20220105b001', '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中'),
-('20220105b003', '20220119901', 3, 2, '0933033011', 'Ann123@mail.com', 9180, '進行中');
+(1, '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
+(2, '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
+(3, '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中'),
+(4, '20220119901', 3, 2, '0933033011', 'Ann123@mail.com', 9180, '進行中');
+
 -- --------------------------------------------------------
 
 --
@@ -746,7 +742,7 @@ CREATE TABLE `payment_detail` (
 --
 
 INSERT INTO `payment_detail` (`payment_detail_id`, `order_id`, `card_num`, `security_code`, `expire_date`) VALUES
-(1, '20220110001', 2147483647, 98, 11);
+(1, '20220110001', 3647, 989, 11);
 
 -- --------------------------------------------------------
 
@@ -1207,8 +1203,8 @@ CREATE TABLE `sub_plan` (
 
 INSERT INTO `sub_plan` (`sub_id`, `sub_plan`, `sub_products`, `sub_price`, `create_at`, `modified_at`) VALUES
 (1, '純米', '作 玄乃智、作 惠乃智', 1300, '2022-01-03 16:26:22', '2022-01-05 14:31:37'),
-(2, '純米吟釀', '真澄 辛口生一本 純米吟醸', 1509, '2022-01-03 16:26:22', '2022-01-05 14:59:39'),
-(3, '純米大吟釀', '鳳凰源平 純米大吟醸', 1809, '2022-01-03 16:26:22', '2022-01-05 15:03:54');
+(2, '純米吟釀', '真澄 辛口生一本 純米吟醸', 1500, '2022-01-03 16:26:22', '2022-01-05 14:59:39'),
+(3, '純米大吟釀', '鳳凰源平 純米大吟醸', 1800, '2022-01-03 16:26:22', '2022-01-05 15:03:54');
 
 -- --------------------------------------------------------
 
@@ -1292,7 +1288,62 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41'),
 (85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48'),
 (122, 'cv0340652@gmail.com', '$2a$10$DttF9ZlVqeZhzZb5C.K5QeLlqO4U69jcwGF1C89JLoDHmqZNLs3Sy', '2022-04-02 19:36:15');
+-- --------------------------------------------------------
 
+--
+-- 資料表結構 `verify`
+--
+
+CREATE TABLE `verify` (
+  `user_id` int(11) NOT NULL,
+  `verify_code` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `verify`
+--
+
+INSERT INTO `verify` (`user_id`, `verify_code`) VALUES
+(1, '633505'),
+(2, '877890'),
+(3, '988932'),
+(4, '810991'),
+(5, '588159'),
+(6, '507820'),
+(7, '774625'),
+(8, '849662'),
+(9, '924434'),
+(10, '573183'),
+(11, '592614'),
+(12, '743519'),
+(13, '939751'),
+(14, '968201'),
+(15, '521750'),
+(16, '704148'),
+(17, '955488'),
+(18, '664995'),
+(19, '958510'),
+(20, '797563'),
+(21, '612288'),
+(22, '668749'),
+(23, '506881'),
+(24, '528157'),
+(25, '620140'),
+(26, '516231'),
+(27, '720734'),
+(28, '763046'),
+(30, '900871'),
+(31, '965481'),
+(32, '624792'),
+(34, '679624'),
+(36, '771931'),
+(37, '763212'),
+(38, '790873'),
+(39, '554976'),
+(40, '727518'),
+(42, '999084'),
+(85, '665229'),
+(122, '617863');
 --
 -- 已傾印資料表的索引
 --
@@ -1658,7 +1709,7 @@ ALTER TABLE `member`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `menu_pictures`
 --
 ALTER TABLE `menu_pictures`
-  MODIFY `menu_pic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `menu_pic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `news`
@@ -1676,7 +1727,7 @@ ALTER TABLE `order_gift_d`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_gift_d_d`
 --
 ALTER TABLE `order_gift_d_d`
-  MODIFY `order_g_pro_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `order_g_pro_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_mark`
@@ -1688,9 +1739,13 @@ ALTER TABLE `order_mark`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_sake_d`
 --
 ALTER TABLE `order_sake_d`
-  MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=9;
-
+  MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `order_sub_d`
+--
+ALTER TABLE `order_sub_d`
+  MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
+
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
 --
 ALTER TABLE `payment_detail`
