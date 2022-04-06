@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- 主機： localhost
--- 產生時間： 2022 年 03 月 25 日 08:48
--- 伺服器版本： 10.4.21-MariaDB
--- PHP 版本： 7.4.27
+-- 主機： 127.0.0.1
+-- 產生時間： 2022-04-06 07:38:32
+-- 伺服器版本： 10.4.22-MariaDB
+-- PHP 版本： 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,7 +79,7 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 --
 
 CREATE TABLE `cart_gift_d_d` (
-   `cart_g_d_id` int(11) NOT NULL,
+  `cart_g_d_id` int(11) NOT NULL,
   `cart_gift_id` varchar(14) NOT NULL,
   `pro_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -382,7 +382,7 @@ INSERT INTO `guide_q` (`q_id`, `q_cate`, `q_seq`, `q_des`) VALUES
 CREATE TABLE `mark` (
   `mark_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-   `mark_name` varchar(20) NOT NULL,
+  `mark_name` varchar(20) NOT NULL,
   `pics` varchar(255) NOT NULL,
   `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -461,6 +461,7 @@ INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `memb
 (40, 40, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (122, 122, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -513,7 +514,12 @@ INSERT INTO `menu_pictures` (`menu_pic_id`, `menu_pic_name`, `res_id`) VALUES
 (33, '11-3.jpg', 11),
 (34, '12-1.jpeg', 12),
 (35, '12-2.jpeg', 12),
-(36, '12-3.webp', 12);
+(36, '12-3.webp', 12),
+(37, '3-3.png', 3),
+(38, '3-4.png', 3),
+(39, '4-3.png', 4),
+(40, '6-3.jpg', 6),
+(41, '8-3.jpg', 8);
 
 -- --------------------------------------------------------
 
@@ -1090,7 +1096,7 @@ CREATE TABLE `shipment_detail` (
   `shipment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL,
   `tracking_num` int(12) NOT NULL,
-   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
+  `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
   `ship_fee` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `receiver` varchar(255) NOT NULL,
@@ -1127,16 +1133,16 @@ CREATE TABLE `special_menu` (
 INSERT INTO `special_menu` (`sp_menu_id`, `sp_menu_pic_name`, `sp_menu_name`, `res_id`) VALUES
 (1, '1.png', '白岩酒造 IWA 5', 1),
 (2, '2.png', '三諸杉 Dio Abita', 2),
-(3, '3.png', '久保田 萬壽 純米大吟釀', 3),
-(4, '4.png', '大嶺酒造 Ohmine 五粒米 Ver.005', 4),
-(5, '5.png', '小西酒造 白雪 Cloudy Sake 純米濁酒', 5),
+(3, '3.png', '久保田 純米大吟釀', 3),
+(4, '4.png', '大嶺酒造 五粒米', 4),
+(5, '5.png', '小西酒造 白雪 純米濁酒', 5),
 (6, '6.png', '天壽 鳥海山 純米大吟釀', 6),
 (7, '7.png', '文佳人 夏 純米吟釀', 7),
-(8, '8.png', '水芭蕉 PURE瓶內二次發酵', 8),
+(8, '8.png', 'PURE瓶內二次發酵', 8),
 (9, '9.png', '出羽櫻 艶姫 純米吟釀', 9),
 (10, '10.png', '末廣 純米吟釀原酒 冷卸', 10),
 (11, '11.png', '美鄉雪華 純米吟釀', 11),
-(12, '12.png', '酒田酒造 上喜元 純米 出羽之里', 12),
+(12, '12.png', '上喜元 出羽之里', 12),
 (13, '1_.jpg', '美國特級肋眼', 1),
 (14, '2_.jpg', '伊比利豬', 2),
 (15, '3_.jpg', '日本生蠔', 3),
@@ -1283,6 +1289,7 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41'),
 (85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48'),
 (122, 'cv0340652@gmail.com', '$2a$10$DttF9ZlVqeZhzZb5C.K5QeLlqO4U69jcwGF1C89JLoDHmqZNLs3Sy', '2022-04-02 19:36:15');
+
 -- --------------------------------------------------------
 
 --
@@ -1339,6 +1346,7 @@ INSERT INTO `verify` (`user_id`, `verify_code`) VALUES
 (42, '999084'),
 (85, '665229'),
 (122, '617863');
+
 --
 -- 已傾印資料表的索引
 --
@@ -1618,12 +1626,14 @@ ALTER TABLE `sub_time`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_account` (`user_account`);
-  --
+
+--
 -- 資料表索引 `verify`
 --
 ALTER TABLE `verify`
   ADD PRIMARY KEY (`verify_code`),
   ADD KEY `user_id` (`user_id`);
+
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
@@ -1638,7 +1648,7 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  MODIFY `cart_g_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_g_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
@@ -1735,12 +1745,14 @@ ALTER TABLE `order_mark`
 --
 ALTER TABLE `order_sake_d`
   MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
+
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_sub_d`
 --
 ALTER TABLE `order_sub_d`
   MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
 
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
 --
 ALTER TABLE `payment_detail`
