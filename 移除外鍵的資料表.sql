@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1
--- 產生時間： 2022-04-06 07:38:32
--- 伺服器版本： 10.4.22-MariaDB
--- PHP 版本： 7.4.26
+-- 主機： localhost
+-- 產生時間： 2022 年 04 月 06 日 08:27
+-- 伺服器版本： 10.4.21-MariaDB
+-- PHP 版本： 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -586,7 +586,7 @@ CREATE TABLE `order_gift_d` (
   `order_g_id` int(20) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
-  `order_d_price` int(10) NOT NULL,
+  `order_d_price` int(10) DEFAULT NULL,
   `order_state` varchar(10) NOT NULL,
   `gift_id` int(11) NOT NULL,
   `box_color` varchar(10) NOT NULL
@@ -734,8 +734,8 @@ CREATE TABLE `payment_detail` (
   `payment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL COMMENT 'FK: order_main.order_id\r\nex:20210401001',
   `card_num` int(16) NOT NULL,
-  `security_code` int(3) NOT NULL,
-  `expire_date` int(4) NOT NULL
+  `security_code` int(3) DEFAULT NULL,
+  `expire_date` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1095,9 +1095,9 @@ INSERT INTO `restaurant_pictures` (`res_pic_id`, `res_pic_name`, `res_id`) VALUE
 CREATE TABLE `shipment_detail` (
   `shipment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL,
-  `tracking_num` int(12) NOT NULL,
+  `tracking_num` int(12) DEFAULT NULL,
   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
-  `ship_fee` int(11) NOT NULL,
+  `ship_fee` int(11) DEFAULT NULL,
   `store_id` int(11) NOT NULL,
   `receiver` varchar(255) NOT NULL,
   `receiver_mobile` varchar(20) NOT NULL,
