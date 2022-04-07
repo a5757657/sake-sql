@@ -706,10 +706,8 @@ INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`
 CREATE TABLE `order_sub_d` (
   `order_d_id` int(14) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
-  `sub_id` int(5) NOT NULL,
+  `sub_id` varchar(20) NOT NULL,
   `subtime_id` int(11) NOT NULL,
-  `order_mobile` varchar(20) NOT NULL,
-  `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL COMMENT '撈訂閱方案.價格 * 訂閱週期.月數*訂閱週期.折扣',
   `order_state` varchar(10) NOT NULL DEFAULT '進行中' COMMENT '進行中、已結束'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -718,11 +716,11 @@ CREATE TABLE `order_sub_d` (
 -- 傾印資料表的資料 `order_sub_d`
 --
 
-INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
-(1, '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
-(2, '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
-(3, '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中'),
-(4, '20220119901', 3, 2, '0933033011', 'Ann123@mail.com', 9180, '進行中');
+INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_d_price`, `order_state`) VALUES
+(1, '20220102001', '[2]', 3, 14400, '進行中'),
+(2, '20220104001', '[1]', 1, 1300, '進行中'),
+(3, '20220105001', '[3]', 2, 9180, '進行中'),
+(4, '20220119901', '[3]', 2, 9180, '進行中');
 
 -- --------------------------------------------------------
 
