@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 03 月 25 日 08:48
+-- 產生時間： 2022 年 04 月 06 日 08:27
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.27
 
@@ -79,7 +79,7 @@ INSERT INTO `cart_gift` (`cart_gift_id`, `member_id`, `cart_quantity`, `gift_id`
 --
 
 CREATE TABLE `cart_gift_d_d` (
-   `cart_g_d_id` int(11) NOT NULL,
+  `cart_g_d_id` int(11) NOT NULL,
   `cart_gift_id` varchar(14) NOT NULL,
   `pro_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -382,7 +382,7 @@ INSERT INTO `guide_q` (`q_id`, `q_cate`, `q_seq`, `q_des`) VALUES
 CREATE TABLE `mark` (
   `mark_id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
-   `mark_name` varchar(20) NOT NULL,
+  `mark_name` varchar(20) NOT NULL,
   `pics` varchar(255) NOT NULL,
   `create_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '自然產生'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -461,6 +461,7 @@ INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `memb
 (40, 40, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (122, 122, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -513,7 +514,12 @@ INSERT INTO `menu_pictures` (`menu_pic_id`, `menu_pic_name`, `res_id`) VALUES
 (33, '11-3.jpg', 11),
 (34, '12-1.jpeg', 12),
 (35, '12-2.jpeg', 12),
-(36, '12-3.webp', 12);
+(36, '12-3.webp', 12),
+(37, '3-3.png', 3),
+(38, '3-4.png', 3),
+(39, '4-3.png', 4),
+(40, '6-3.jpg', 6),
+(41, '8-3.jpg', 8);
 
 -- --------------------------------------------------------
 
@@ -580,7 +586,7 @@ CREATE TABLE `order_gift_d` (
   `order_g_id` int(20) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL,
   `order_quantity` int(2) NOT NULL,
-  `order_d_price` int(10) NOT NULL,
+  `order_d_price` int(10) DEFAULT NULL,
   `order_state` varchar(10) NOT NULL,
   `gift_id` int(11) NOT NULL,
   `box_color` varchar(10) NOT NULL
@@ -700,10 +706,8 @@ INSERT INTO `order_sake_d` (`order_d_id`, `order_id`, `pro_id`, `order_quantity`
 CREATE TABLE `order_sub_d` (
   `order_d_id` int(14) NOT NULL COMMENT '改成A_I',
   `order_id` varchar(11) NOT NULL COMMENT 'FK：order_m.order_id',
-  `sub_id` int(5) NOT NULL,
+  `sub_id` varchar(20) NOT NULL,
   `subtime_id` int(11) NOT NULL,
-  `order_mobile` varchar(20) NOT NULL,
-  `order_email` varchar(225) NOT NULL,
   `order_d_price` int(10) NOT NULL COMMENT '撈訂閱方案.價格 * 訂閱週期.月數*訂閱週期.折扣',
   `order_state` varchar(10) NOT NULL DEFAULT '進行中' COMMENT '進行中、已結束'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -712,11 +716,11 @@ CREATE TABLE `order_sub_d` (
 -- 傾印資料表的資料 `order_sub_d`
 --
 
-INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_mobile`, `order_email`, `order_d_price`, `order_state`) VALUES
-(1, '20220102001', 2, 3, '0911033022', 'willy89@mail.com', 14400, '進行中'),
-(2, '20220104001', 1, 1, '0977777121', 'dan093@mail.com', 1300, '進行中'),
-(3, '20220105001', 3, 2, '0933033011', 'f8nk@mail.com', 9180, '進行中'),
-(4, '20220119901', 3, 2, '0933033011', 'Ann123@mail.com', 9180, '進行中');
+INSERT INTO `order_sub_d` (`order_d_id`, `order_id`, `sub_id`, `subtime_id`, `order_d_price`, `order_state`) VALUES
+(1, '20220102001', '[2]', 3, 14400, '進行中'),
+(2, '20220104001', '[1]', 1, 1300, '進行中'),
+(3, '20220105001', '[3]', 2, 9180, '進行中'),
+(4, '20220119901', '[3]', 2, 9180, '進行中');
 
 -- --------------------------------------------------------
 
@@ -728,8 +732,8 @@ CREATE TABLE `payment_detail` (
   `payment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL COMMENT 'FK: order_main.order_id\r\nex:20210401001',
   `card_num` int(16) NOT NULL,
-  `security_code` int(3) NOT NULL,
-  `expire_date` int(4) NOT NULL
+  `security_code` int(3) DEFAULT NULL,
+  `expire_date` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -931,15 +935,15 @@ INSERT INTO `product_sake` (`pro_id`, `pro_name`, `pro_stock`, `pro_selling`, `p
 (3, '★喜樂長FIGHT！台灣！純米 應援酒', 10, 0, '如同夏季吹過琵琶湖面涼爽的風、表現爽快又舒服的一款酒。微微柑橘類與香草系的香氣撲鼻、飲入口中，輕巧地滲透心脾，能品嘗到些許的甜味與輕快的酸味滑過舌面，尾韻帶有爽快dry感。顺滑清澈的美味隨之而來是，水嫩的酸味伴隨著清涼感，冰飲的消暑伴隨清澈香氣和溫柔的甜味在口中滿溢。', '已上架', 3, 'M0003.png', '2022-01-03 18:12:03', '2022-01-03 18:12:03'),
 (4, '白木久BLACK LABEL Brilliant 純米吟釀', 10, 0, 'BLACK LABEL系列採用黑麴釀造!優雅美麗的甜味和酸味，直覺會以為黑麴釀製出的酒會特別酸，但其實BLACK LABEL系列所強調的風格比起酸度更強調酒米的旨味與香氣的力度，甜味較vibrant更加清爽入口彷彿吃下現摘草莓般的味道，散發出多汁的甜味和酸味，細膩的微發泡感，更讓整體喝起來甜而不膩，非常清爽好入口。', '已上架', 4, 'M0004.png', '2022-01-03 18:12:04', '2022-01-03 18:12:04'),
 (5, '鳳凰源平 純米大吟釀', 10, 0, '如浴火鳳凰的蛻變重生，將酒的形象與酒造的精神反映在酒標上，深紫色與金箔細膩的交織而成誕生美麗的鳳凰，感受得到精細的設計工藝。使用全量山田錦精米至48%。香氣為華麗的吟釀香。熟成蘋果般的香氣。收尾俐落，輕快且飽滿的口感的純米大吟釀酒款。推薦的飲用方法是冰溫或是略冰。華麗的香氣組成，在甜味與酸味當中取得平衡的味道。可以確實感受到米的旨味的酒款。香氣與味道會隨著溫度而變化是其旨趣，漂亮且水潤感滿溢的味道使人愛不釋口。選用日本百水「御清水」，口感柔軟滑順是其特點。With Original Phoenix Carton Box', '已上架', 5, 'M0005.png', '2022-01-03 18:12:05', '2022-01-03 18:12:05'),
-(6, '真澄 夢殿純米大吟釀', 10, 0, '真澄純米酒釀造的最高峰作品。每年代表富士見藏參加全國清酒品評會的評選。\n口味極具層次，有優雅而清新的果香。', '已上架', 6, 'M0006.png', '2022-01-03 18:12:06', '2022-01-03 18:12:06'),
+(6, '真澄 夢殿純米大吟釀', 10, 10, '真澄純米酒釀造的最高峰作品。每年代表富士見藏參加全國清酒品評會的評選。\n口味極具層次，有優雅而清新的果香。', '已上架', 6, 'M0006.png', '2022-01-03 18:12:06', '2022-01-03 18:12:06'),
 (7, '真澄 七號純米大吟釀', 10, 0, '用發源於真澄酒藏的七號酵母和長野縣產美山錦米，採用傳統技法山廢釀法釀造而成。是長野縣與真澄酒藏極具代表性的清酒。口感穩重中帶酸，有淡淡的果香，酒體優雅而具層次感。海外人氣度極高。於2015年International Wine Challenge中獲得銀獎。', '已上架', 7, 'M0007.png', '2022-01-03 18:12:07', '2022-01-03 18:12:07'),
 (8, '真澄 山花純米大吟釀', 10, 0, '酒名取自李白的詩「兩人對酌山花開，一杯一杯又一杯」。口味淡雅清麗，有果實般的芳香，令人聯想起初春山峰上盛開的鮮花。海外人氣極高。於2015年International Wine Challenge中獲得銀牌。', '已上架', 8, 'M0008.png', '2022-01-03 18:12:08', '2022-01-03 18:12:08'),
-(9, '真澄 辛口生一本 純米吟釀', 10, 0, '「生一本」意為全釀造工序於單一酒藏中完成。真澄極具代表性的支柱產品之一，有青蘋果的芳香，酒體透明，口感微辛、清爽，入口無痕，兼具辛口與柔和口感的絕妙平衡。極具特色的黑色酒標已成為真澄的識別色，自發賣以來廣受人們喜愛。於2015年International Wine Challenge中獲得銀牌。', '已上架', 9, 'M0009.png', '2022-01-03 18:12:09', '2022-01-03 18:12:09'),
+(9, '真澄 辛口生一本 純米吟釀', 10, 9, '「生一本」意為全釀造工序於單一酒藏中完成。真澄極具代表性的支柱產品之一，有青蘋果的芳香，酒體透明，口感微辛、清爽，入口無痕，兼具辛口與柔和口感的絕妙平衡。極具特色的黑色酒標已成為真澄的識別色，自發賣以來廣受人們喜愛。於2015年International Wine Challenge中獲得銀牌。', '已上架', 9, 'M0009.png', '2022-01-03 18:12:09', '2022-01-03 18:12:09'),
 (10, '真澄 奧傳寒造 純米酒', 10, 0, '採用發源於真澄的七號酵母釀造而成。口感溫和，甘辛適中，帶米香。適合常溫或熱飲。於2012年International Wine Challenge中獲得銅獎。', '已上架', 10, 'M0010.png', '2022-01-03 18:12:10', '2022-01-03 18:12:10'),
 (11, 'YAWARAKA TYPE-1 純米吟釀', 10, 0, '2015年8月發賣的新產品。革命性的將酒精度降低到了12度的同時，不失整體的平衡。口感輕柔，有淡淡的果實清香。會讓人在不知不覺中一杯一杯的喝下去。非常適合作為午餐佐酒。', '已上架', 11, 'M0011.png', '2022-01-03 18:12:11', '2022-01-03 18:12:11'),
 (12, '真澄本釀造特撰 本釀造', 10, 0, '普通酒類別中性價比最高。2014年通過改進技術，降低精米步合，大幅提高了酒的品質，使之香味更多，口感更輕快，冷飲熱飲皆可。在2015年的International Wine Challenge品評會中獲得銀牌。', '已上架', 12, 'M0012.png', '2022-01-03 18:12:12', '2022-01-03 18:12:12'),
 (13, '會津譽 播州山田錦 純米大吟釀', 10, 0, '此款酒為會津譽酒造最為高級的酒種，將播州山田錦削去表層60%，僅留下最精華的40%心白部分進行釀製；柑桔以及蘋果的香氣明顯，酒體本身濃醇。此款在IWC2013年獲得金牌，更於2015年得到冠軍酒的殊榮，2016年世界領袖高峰會為安倍首相贈各國首相禮。\n\n\n強烈濃郁的水果香氣，入喉後在口中可感受芒果、菠蘿蜜、熱帶水果、黑醋栗等餘韻；酒體渾厚飽滿，尾韻綿延十分悠長。\n\n\n因其香氣與口味較重，推薦給喝習慣紅白葡萄酒想嘗試日本酒的同好。', '已上架', 13, 'M0013.png', '2022-01-03 18:12:13', '2022-01-03 18:12:13'),
-(14, '水芭蕉 鼠年限定 純米大吟釀', 10, 0, '『世界米其 餐廳指定品牌』  \n\n\n搭配2020東京奧運，生肖排列成奧運環狀、雷射雕刻瓶身，極具收藏價值!\n\n\n\n\n\n\n『柔軟淡麗的細緻清香』\n\n\n白桃洋梨香氣飽滿，淡雅清新的米香陪襯其中，清澈水質帶來的自然輕甜，在口中緩緩綻放香氣綿延持久，喝起來柔順優雅。', '已上架', 14, 'M0014.png', '2022-01-03 18:12:14', '2022-01-03 18:12:14'),
+(14, '水芭蕉 鼠年限定 純米大吟釀', 10, 8, '『世界米其 餐廳指定品牌』  \n\n\n搭配2020東京奧運，生肖排列成奧運環狀、雷射雕刻瓶身，極具收藏價值!\n\n\n\n\n\n\n『柔軟淡麗的細緻清香』\n\n\n白桃洋梨香氣飽滿，淡雅清新的米香陪襯其中，清澈水質帶來的自然輕甜，在口中緩緩綻放香氣綿延持久，喝起來柔順優雅。', '已上架', 14, 'M0014.png', '2022-01-03 18:12:14', '2022-01-03 18:12:14'),
 (15, '水芭蕉 牛年限定 純米大吟釀', 10, 0, '2021丑年來臨，酒造推出一年一度的新年限定酒。\n\n\n使用兵庫縣三木市契約栽培的山田錦釀造，開瓶洋溢優雅果香，口感水潤飽滿，細緻米旨味綿延不絕。雷雕瓶身設計精美，猛牛氣勢如虹，期望為新的一年招福迎春！', '已上架', 15, 'M0015.png', '2022-01-03 18:12:15', '2022-01-03 18:12:15'),
 (16, '會津譽 鳳凰標大吟釀', 10, 0, '這瓶大吟釀本身帶有青蘋果、水梨、花香以及成熟核果香氣，入喉後略微辛口清爽，後韻帶有旨味；於2014、2017年IWC競賽中獲得金獎，並由日本國家釀酒研究所頒與金獎14次，2016年亦獲得年度新酒金賞。\n\n\n乾淨成熟的香氣，良好的深度。入口後可以感受到菠蘿、蘋果以及芒果的味道，後段會帶有圓滑的苦味及旨味餘韻。', '已上架', 16, 'M0016.png', '2022-01-03 18:12:16', '2022-01-03 18:12:16'),
 (17, '文佳人 Liseur 特別純米', 10, 0, '在2017年由法國舉辦的清酒比賽Kura Master獲得純米部門金賞。\r\n\r\n一次火入新鮮且優雅的香氣，口感柔順容易飲用，建議可以稍等回溫後風味更加，是可以和紅白酒相比擬的完美食中酒。\r\n\r\nLiseur在法文意指有氣質、飽讀詩書的女性的名詞，也就是品牌名稱「文佳人」。', '已上架', 17, 'M0017.png', '2022-01-03 18:12:17', '2022-01-03 18:12:17'),
@@ -1089,9 +1093,9 @@ INSERT INTO `restaurant_pictures` (`res_pic_id`, `res_pic_name`, `res_id`) VALUE
 CREATE TABLE `shipment_detail` (
   `shipment_detail_id` int(11) NOT NULL,
   `order_id` varchar(11) NOT NULL,
-  `tracking_num` int(12) NOT NULL,
-   `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
-  `ship_fee` int(11) NOT NULL,
+  `tracking_num` int(12) DEFAULT NULL,
+  `shipment_method` varchar(20) NOT NULL COMMENT '宅配、自取',
+  `ship_fee` int(11) DEFAULT NULL,
   `store_id` int(11) NOT NULL,
   `receiver` varchar(255) NOT NULL,
   `receiver_mobile` varchar(20) NOT NULL,
@@ -1127,16 +1131,16 @@ CREATE TABLE `special_menu` (
 INSERT INTO `special_menu` (`sp_menu_id`, `sp_menu_pic_name`, `sp_menu_name`, `res_id`) VALUES
 (1, '1.png', '白岩酒造 IWA 5', 1),
 (2, '2.png', '三諸杉 Dio Abita', 2),
-(3, '3.png', '久保田 萬壽 純米大吟釀', 3),
-(4, '4.png', '大嶺酒造 Ohmine 五粒米 Ver.005', 4),
-(5, '5.png', '小西酒造 白雪 Cloudy Sake 純米濁酒', 5),
+(3, '3.png', '久保田 純米大吟釀', 3),
+(4, '4.png', '大嶺酒造 五粒米', 4),
+(5, '5.png', '小西酒造 白雪 純米濁酒', 5),
 (6, '6.png', '天壽 鳥海山 純米大吟釀', 6),
 (7, '7.png', '文佳人 夏 純米吟釀', 7),
-(8, '8.png', '水芭蕉 PURE瓶內二次發酵', 8),
+(8, '8.png', 'PURE瓶內二次發酵', 8),
 (9, '9.png', '出羽櫻 艶姫 純米吟釀', 9),
 (10, '10.png', '末廣 純米吟釀原酒 冷卸', 10),
 (11, '11.png', '美鄉雪華 純米吟釀', 11),
-(12, '12.png', '酒田酒造 上喜元 純米 出羽之里', 12),
+(12, '12.png', '上喜元 出羽之里', 12),
 (13, '1_.jpg', '美國特級肋眼', 1),
 (14, '2_.jpg', '伊比利豬', 2),
 (15, '3_.jpg', '日本生蠔', 3),
@@ -1283,6 +1287,7 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41'),
 (85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48'),
 (122, 'cv0340652@gmail.com', '$2a$10$DttF9ZlVqeZhzZb5C.K5QeLlqO4U69jcwGF1C89JLoDHmqZNLs3Sy', '2022-04-02 19:36:15');
+
 -- --------------------------------------------------------
 
 --
@@ -1339,6 +1344,7 @@ INSERT INTO `verify` (`user_id`, `verify_code`) VALUES
 (42, '999084'),
 (85, '665229'),
 (122, '617863');
+
 --
 -- 已傾印資料表的索引
 --
@@ -1618,12 +1624,14 @@ ALTER TABLE `sub_time`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_account` (`user_account`);
-  --
+
+--
 -- 資料表索引 `verify`
 --
 ALTER TABLE `verify`
   ADD PRIMARY KEY (`verify_code`),
   ADD KEY `user_id` (`user_id`);
+
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
@@ -1638,7 +1646,7 @@ ALTER TABLE `admin`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_gift_d_d`
 --
 ALTER TABLE `cart_gift_d_d`
-  MODIFY `cart_g_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_g_d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart_mark`
@@ -1735,12 +1743,14 @@ ALTER TABLE `order_mark`
 --
 ALTER TABLE `order_sake_d`
   MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
+
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_sub_d`
 --
 ALTER TABLE `order_sub_d`
   MODIFY `order_d_id` int(14) NOT NULL AUTO_INCREMENT COMMENT '改成A_I', AUTO_INCREMENT=5;
 
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `payment_detail`
 --
 ALTER TABLE `payment_detail`
