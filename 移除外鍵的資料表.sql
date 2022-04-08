@@ -761,7 +761,7 @@ INSERT INTO `product_container` (`container_id`, `container_img`, `container_sha
 (2, '3-o.png', '3-s.png', '津輕金箔玻璃清酒杯'),
 (3, '1-o.png', '1-s.png', '純錫製清酒瓶和木造清酒杯的套組'),
 (4, '2-o.png', '2-s.png', '純錫豬口杯'),
-(5, 'Null', 'Null', 'Null');
+(5, 'Null.png', 'Null.png', 'Null');
 
 -- --------------------------------------------------------
 
