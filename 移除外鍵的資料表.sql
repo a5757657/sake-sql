@@ -459,8 +459,7 @@ INSERT INTO `member` (`member_id`, `user_id`, `member_name`, `member_bir`, `memb
 (38, 38, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (39, 39, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
 (40, 40, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
-(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', ''),
-(122, 122, NULL, NULL, NULL, NULL, NULL);
+(42, 42, 'test', '1999-08-09', '0933903889', '台北市士林區後街3巷1號', '');
 
 -- --------------------------------------------------------
 
@@ -1290,8 +1289,7 @@ INSERT INTO `user` (`user_id`, `user_account`, `user_pass`, `user_time`) VALUES
 (39, 'wfwfwewdfweddfa@gmai', '$2a$10$fuZAeXpbrl1YNp65JHIPZetsIllkX.QKHYSGxuh8huRzzlLQ1JVZ.', '2022-02-20 18:38:42'),
 (40, 'qweqsada@gmail.com', '$2a$10$6h5HNtfpL1biVAaxv5M0/Or2FbRsBDN.bBW0CSFgIOvImTglYb7/6', '2022-02-20 18:39:55'),
 (42, 'faewe@gmail.com', '$2a$10$9bZm71sLTGBbG4IJC0c7NOiXUyn758mVRPcg11QRcHteeEycVFh7W', '2022-02-21 12:26:41'),
-(85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48'),
-(122, 'cv0340652@gmail.com', '$2a$10$DttF9ZlVqeZhzZb5C.K5QeLlqO4U69jcwGF1C89JLoDHmqZNLs3Sy', '2022-04-02 19:36:15');
+(85, 'cce350276@gmail.com', '$2a$10$SMucNyFbKYUjnI5wjUsbw.d8itHcGi7VNYjACkb7bAmS1PuSRg0.O', '2022-04-01 16:14:48');
 
 -- --------------------------------------------------------
 
@@ -1347,8 +1345,7 @@ INSERT INTO `verify` (`user_id`, `verify_code`) VALUES
 (39, '554976'),
 (40, '727518'),
 (42, '999084'),
-(85, '665229'),
-(122, '617863');
+(85, '665229');
 
 --
 -- 已傾印資料表的索引
